@@ -28,7 +28,6 @@ void Version::CreateSaveFile(std::string inputstring){ // Create function that t
 	std::ofstream output_file;
 	std::time_t current_time = time(0);
 	std::string time_string = std::ctime(&current_time); // Parameter takes pointer to time object
-//	std::cout<<std::ctime(&current_time)<<std::endl;
 	std::string time_string_clear = "";
 
 	for (int loop = 0; loop < time_string.length(); loop++)
@@ -44,8 +43,6 @@ void Version::CreateSaveFile(std::string inputstring){ // Create function that t
 	version_ss << version_number;
 	time_string_clear = "_V" + version_ss.str() + std::string(time_string) + "txt";
 	std::string filename = std::string("/home/lvuser/") + filesnippet + time_string_clear;
-//	std::cout<<filename<<std::endl;
-//	std::cout<<filename.c_str()<<std::endl;
 	output_file.open(filename.c_str());
 	output_file << inputstring;
 	output_file.close();
