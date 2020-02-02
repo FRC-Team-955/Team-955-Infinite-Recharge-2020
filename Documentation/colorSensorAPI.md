@@ -17,7 +17,7 @@ Conversion notes:
 
 
 <p style="text-align: right">
-OM-1/29/2020 If this owrk i am god</p>
+OM-1/29/2020</p>
 
 
 ColorSensor API Documentation
