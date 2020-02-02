@@ -3,19 +3,19 @@
 
  bool ControlPanelSpinner::PositionControl(bool is_match){
   if(is_match){
-    talon_weelspinner_enc -> Set(ControlMode::PercentOutput, 0);
+    talon_wheelspinner_enc -> Set(ControlMode::PercentOutput, 0);
     return 1;
   }else{
-    talon_weelspinner_enc -> Set(ControlMode::PercentOutput, .5);
+    talon_wheelspinner_enc -> Set(ControlMode::PercentOutput, .5);
     return 0;
   }
  }
-  bool ControlPanelSpinner::RotationControl(int color_count){
-    if(color_count < 4){
-      talon_weelspinner_enc -> Set(ControlMode::PercentOutput, .5);
+  bool ControlPanelSpinner::RotationControl(int color_count, int max_count){
+    if(color_count <= max_count){
+      talon_wheelspinner_enc -> Set(ControlMode::PercentOutput, .5);
       return 1;
     }else{
-      talon_weelspinner_enc -> Set(ControlMode::PercentOutput, 0);
+      talon_wheelspinner_enc -> Set(ControlMode::PercentOutput, 0);
       return 0;
     }
   }
