@@ -4,7 +4,7 @@
 using namespace frc;
 using namespace std;
 
-void TestMotorsSRX::RunMotor(int output_percentage, int button_forward, int button_backward, bool has_encoder)
+void TestMotorsSRX::RunMotor(float output_percentage, int button_forward, int button_backward, bool has_encoder)
 {
 	if (joystick -> GetRawButton(button_forward))            //Press button_foward to run forward
     {
