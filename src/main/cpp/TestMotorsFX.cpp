@@ -3,7 +3,7 @@
 #include "frc/WPILib.h"
 using namespace frc;
 
-void TestMotorsFX::RunMotor(int output_percentage, int button_forward, int button_backward, bool has_encoder)
+void TestMotorsFX::RunMotor(float output_percentage, int button_forward, int button_backward, bool has_encoder)
 {
 	if (joystick -> GetRawButton(1))            //Press A to run forward
     {
