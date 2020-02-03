@@ -9,9 +9,9 @@
 
 #include <iostream>
 
-#include <frc/smartdashboard/SmartDashboard.h>
 #include "ctre/Phoenix.h"
 #include <frc/Joystick.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 using namespace frc;
 
@@ -29,8 +29,11 @@ void Robot::TeleopPeriodic() {}
 
 void Robot::TestPeriodic() {}
 
-void Robot::DisabledInit(){}
+void Robot::DisabledInit() {}
 
 #ifndef RUNNING_FRC_TESTS
-int main() { return frc::StartRobot<Robot>(); }
+int main()
+{
+    return frc::StartRobot<Robot>();
+}
 #endif

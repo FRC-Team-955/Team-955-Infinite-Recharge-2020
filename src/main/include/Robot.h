@@ -6,10 +6,10 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
-#include <iostream>
-#include "frc/WPILib.h"
 #include "ctre/Phoenix.h"
+#include "frc/WPILib.h"
 #include <frc/Joystick.h>
+#include <iostream>
 
 #include <string>
 
@@ -17,15 +17,15 @@
 #include <frc/smartdashboard/SendableChooser.h>
 
 class Robot : public frc::TimedRobot {
- public:
-  void RobotInit() override;
-  void RobotPeriodic() override;
-  void AutonomousInit() override;
-  void AutonomousPeriodic() override;
-  void TeleopInit() override;
-  void TeleopPeriodic() override;
-  void TestPeriodic() override;
-  void DisabledInit() override;
+public:
+    void RobotInit() override;
+    void RobotPeriodic() override;
+    void AutonomousInit() override;
+    void AutonomousPeriodic() override;
+    void TeleopInit() override;
+    void TeleopPeriodic() override;
+    void TestPeriodic() override;
+    void DisabledInit() override;
 
- private:
+private:
 };
