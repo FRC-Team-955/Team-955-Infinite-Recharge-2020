@@ -42,6 +42,10 @@ Spools in the winch a given number of tics
 Parameters:
 <p>
 int tics = the number of tics the winch will spin when lifting the robot
+<p>
+Use:
+<p>
+Use to raise the robot after ataching the hook in endgame
    </td>
   </tr>
 </table>
