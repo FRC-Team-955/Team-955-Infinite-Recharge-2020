@@ -48,6 +48,15 @@ Useage:
 Used to raise the robot after ataching the hook in endgame
    </td>
   </tr>
+   <td><strong>void LowerWinch()</strong>
+<p>
+Resets the winch back to 0 tics
+<p>
+Useage:
+<p>
+Used to lower the robot if something bad happens
+   </td>
+  </tr>
 </table>
 
 
