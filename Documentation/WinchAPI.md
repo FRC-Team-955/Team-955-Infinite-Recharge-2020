@@ -43,9 +43,9 @@ Parameters:
 <p>
 int tics = the number of tics the winch will spin when lifting the robot
 <p>
-Use:
+Useage:
 <p>
-Use to raise the robot after ataching the hook in endgame
+Used to raise the robot after ataching the hook in endgame
    </td>
   </tr>
 </table>
