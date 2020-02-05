@@ -1,29 +1,20 @@
 #ifndef USBCAMERA
 #define USBCAMERA
 
-#include <string>
-#include <frc/WPILib.h>
-#include <ctre/Phoenix.h>
-#include <iostream>
-#include <frc/TimedRobot.h>
-#include <frc/smartdashboard/SendableChooser.h>
 #include <cmath>
+#include <ctre/Phoenix.h>
+#include <frc/TimedRobot.h>
+#include <frc/WPILib.h>
+#include <frc/smartdashboard/SendableChooser.h>
+#include <iostream>
+#include <string>
 using namespace frc;
 
-class UsbCamera{
-    public:
-    UsbCamera(){};
+class UsbCamera {
+public:
+    UsbCamera() {};
     void VideoCapture();
 
-
-    private:
-    
-
-
-
-
-
-
-
+private:
 };
 #endif
