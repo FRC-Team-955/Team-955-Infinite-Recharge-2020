@@ -48,11 +48,6 @@ void Version::CreateSaveFile(std::string inputstring){ // Create function that t
 	output_file.close();
 }
 
-void Version::SavePrintStatement(std::string save_string, std::string &storage){
-	std::cout<<save_string<<std::endl;
-	storage = storage + save_string + "\n";
-}
-
 std::string Version::ToString(float integer){
 	std::stringstream int_ss;
 	int_ss << integer;
@@ -60,8 +55,8 @@ std::string Version::ToString(float integer){
 	return int_s;
 }
 
-void Version::AddToPipeDelimitedFile(std::string topic, std::string value, std::string &storage_topic, std::string &storage_value){
-	std::cout<<topic<<": "<<value<<std::endl;
+void Version::AddToPipeDelimitedFile(std::string topic, std::string value, std::string &storage_topic, std::string &storage_value, bool print){
+	if (print) std::cout<<topic<<": "<<value<<std::endl;
 	storage_value = storage_value + value + "|";
 	std::string topic_pipe = topic + std::string("|");
 	if (storage_topic.find(topic_pipe) == std::string::npos) {
@@ -71,4 +66,8 @@ void Version::AddToPipeDelimitedFile(std::string topic, std::string value, std::
 
 void Version::EndLoop(std::string &storage_value){
 	storage_value = storage_value + "\n";
+}
+
+std::string Version::GetFileName(){
+	return filesnippet;
 }
