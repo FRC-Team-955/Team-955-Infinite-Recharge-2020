@@ -1,14 +1,8 @@
-<p style="text-align: right">
-EW 2/7/2020</p>
-
-
-Version API Documentation
-
-
 <table><p style="text-align: right">
 EW 2/7/2020</p>
 
 
+<p style="text-align: center">
 Version API Documentation
 
 
