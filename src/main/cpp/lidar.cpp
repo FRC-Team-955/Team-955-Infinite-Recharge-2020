@@ -1,4 +1,4 @@
-#include "Lidar.h"
+#include "lidar.h"
 using namespace frc;
 
 int Lidar::GetDistance(std::string units){
