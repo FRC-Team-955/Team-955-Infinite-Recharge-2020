@@ -6,21 +6,21 @@ this is the variable sensitivity drive base program.
 left, right, lcalc, rcalc, and x dont need to have a value set in robot.cpp, but do need to exist
 */
 
-#include "driveBase.h"
-
+#include "DriveBase.h"
 
 using namespace frc;
 
-
 void DriveBase::Drive(double left, double right, double lcalc, double rcalc, double &multi, double &x){
-  right = (joy->GetRawAxis(1) + joy->GetRawAxis(4));
-  left = (-1*joy->GetRawAxis(1) - -1*joy->GetRawAxis(4));
+  right = (joy0->GetRawAxis(1) + joy0->GetRawAxis(4));
+  left = (-1*joy0->GetRawAxis(1) - -1*joy0->GetRawAxis(4));
   if (multi > 0 && joy->GetRawButton(1) == true && x > 10){
     multi = multi / 3;        //the input is a decimal so it strts on slower mode and goes up to faster mode when divided by 3.... because of maths
     x = 0;
-  } else {
+  } 
+  else {
     x += 1;
-  } if (multi < 0.125){
+  } 
+  if (multi < 0.125){
     multi = 1;
   }
   right = right / multi;

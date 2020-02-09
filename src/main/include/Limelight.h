@@ -9,23 +9,23 @@
 class Limelight {
     public:
 	Limelight(
-		frc::Joystick *joy0,
+		frc::Joystick *joystick,
 		TalonSRX *talon_drive_left_enc,
 		TalonSRX *talon_drive_left_noenc,
 		TalonSRX *talon_drive_right_enc,
 		TalonSRX *talon_drive_right_noenc
 	):
-		joy0(joy0),
+		joystick(joystick),
 		talon_drive_left_enc(talon_drive_left_enc),
 		talon_drive_left_noenc(talon_drive_left_noenc),
 		talon_drive_right_enc(talon_drive_right_enc),
 		talon_drive_right_noenc(talon_drive_right_noenc){};
 	
 	bool align = false;
-    	void RunAlign (double  horizontal_offset);
+    	void RunAlign(double  horizontal_offset);
 	
     private:
-    	frc::Joystick *joy0;
+    	frc::Joystick *joystick;
 	TalonSRX *talon_drive_left_enc;
 	TalonSRX *talon_drive_left_noenc;
 	TalonSRX *talon_drive_right_enc;

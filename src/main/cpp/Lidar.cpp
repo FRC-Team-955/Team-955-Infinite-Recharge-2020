@@ -7,8 +7,8 @@ int Lidar::GetDistance(std::string units){
   }else{
     return ((lidar->GetPeriod()*1000000.0/10.0)/2.54);
   }
-  
 }
+
 bool Lidar::IsInRange(int low_range, int high_range){
   dist = ((lidar->GetPeriod()*1000000.0/10.0)/2.54);
   if (dist >= low_range && dist <= high_range){
