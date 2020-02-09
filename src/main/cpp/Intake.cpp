@@ -57,7 +57,7 @@ void Intake::RunIntake(int input_button, float output_percentage)
 void Intake::ApplyDeploySoftLimits(int forward_limit, int backward_limit)
 {
     deployment_talon -> ConfigForwardSoftLimitThreshold(forward_limit, 10);
-    deployment_talon -> ConfigReverseSoftLimitThreshold(forward_limit, 10);
+    deployment_talon -> ConfigReverseSoftLimitThreshold(backward_limit, 10);
 
     deployment_talon -> ConfigForwardSoftLimitEnable(true, 10);
     deployment_talon -> ConfigReverseSoftLimitEnable(true, 10);
