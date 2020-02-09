@@ -37,7 +37,7 @@ class XYalign{
         AHRS *ahrs; 
         double degree;
         double vertical_offset;
-        double HorizontalOffset;
-        double targetOffsetAngle_Horizontal;
+        double horizontal_offset;
+        double target_offset_angle_horizontal;
 };
 #endif
