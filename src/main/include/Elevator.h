@@ -12,10 +12,10 @@ using namespace frc;
 
 class Elevate{
     public:
-        Elevate(TalonSRX *talon_drive_right_enc, frc::Joystick * joy0): talon_drive_right_enc(talon_drive_right_enc),joy0(joy0){};
+        Elevate(TalonSRX *talon_drive_right_enc, frc::Joystick * joystick): talon_drive_right_enc(talon_drive_right_enc),joystick(joystick){};
         double left_drive;
         double right_drive;
-        bool Align;
+        bool align;
         double elev();
     
     private:
@@ -23,11 +23,11 @@ class Elevate{
         TalonSRX *talon_drive_left_enc;
         TalonSRX *talon_drive_left_noenc;
         TalonSRX *talon_drive_right_noenc;
-        Joystick *joy0;
+        Joystick *joystick;
         AHRS *ahrs; 
         double degree;
         double vertical_offset;
-        double HorizontalOffset;
+        double horizontal_offset;
         double targetOffsetAngle_Horizontal;
 
 };
