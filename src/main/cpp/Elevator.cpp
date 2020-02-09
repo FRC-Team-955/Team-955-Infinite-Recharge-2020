@@ -4,9 +4,4 @@ using namespace frc;
 double Elevate::elev(){
   int yp = joy0->GetRawAxis(1);
   talon_drive_right_enc->Set(ControlMode::PercentOutput,yp);
-
-
-
-
-
 }
