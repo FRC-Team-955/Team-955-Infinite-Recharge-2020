@@ -1,4 +1,4 @@
-#include <Auto.h>
+#include <auto.h>
 
 int Auto::CalculateEncoderCounts(int length_inches){
 	return gear_ratio * wheel_diameter * length_inches; // Haven't tested yet
