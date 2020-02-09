@@ -6,7 +6,7 @@ this is the variable sensitivity drive base program.
 left, right, lcalc, rcalc, and x dont need to have a value set in robot.cpp, but do need to exist
 */
 
-#include "DriveBase.h"
+#include "drivebase.h"
 
 using namespace frc;
 
