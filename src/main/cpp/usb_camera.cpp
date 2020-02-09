@@ -1,4 +1,4 @@
-#include "UsbCamera.h"
+#include "usb_camera.h"
 using namespace frc;
 
 void UsbCamera::VideoCapture(){
