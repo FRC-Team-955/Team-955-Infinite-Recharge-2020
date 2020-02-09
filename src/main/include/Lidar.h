@@ -8,6 +8,7 @@
 #include <cmath>
 
 using namespace frc;
+
 class Lidar {
    public:
        Lidar (Counter *lidar) : lidar(lidar) {lidar->SetMaxPeriod(1.0);
