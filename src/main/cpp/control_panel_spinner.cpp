@@ -1,4 +1,4 @@
-#include "ControlPanelSpinner.h"
+#include "control_panel_spinner.h"
 
 using namespace frc;
 
