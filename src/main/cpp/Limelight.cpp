@@ -21,10 +21,10 @@ void Limelight::RunAlign(double  horizontal_offset) {
     talon_drive_right_enc ->Set(ControlMode::PercentOutput,   horizontal_offset/ 45);
   }
   
-  if (joy0->GetRawButton(2)==1){
+  if (joystick->GetRawButton(2)==1){
     align = false;
   }
-  if (joy0->GetRawButton(1)==1){
+  if (joystick->GetRawButton(1)==1){
     align = true;
   }
   std::cout<< horizontal_offset<<std::endl;
