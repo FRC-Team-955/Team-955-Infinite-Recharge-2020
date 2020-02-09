@@ -1,4 +1,4 @@
-#include "Winch.h"
+#include "winch.h"
 using namespace frc;
 
 void Winch::RaiseWinch(int tics){
