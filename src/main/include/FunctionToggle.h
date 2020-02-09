@@ -12,10 +12,10 @@ class FunctionToggle {
    public:
        FunctionToggle (Joystick *joystick) : joystick(joystick) {};
        bool ToggleFunction();
+   
    private:
         Joystick *joystick;
         bool is_pressed = false;
         bool toggle = false;
-
 };
 #endif
