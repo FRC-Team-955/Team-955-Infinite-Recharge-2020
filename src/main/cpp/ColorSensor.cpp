@@ -1,23 +1,24 @@
-#include "colorSensor.h"
- using namespace frc;
+#include "ColorSensor.h"
+ 
+using namespace frc;
 
- void ColorSensor::SetBlue(double red,double green,double blue){
+void ColorSensor::SetBlue(double red,double green,double blue){
   blue_target = Color(red, green, blue);
   color_matcher->AddColorMatch(blue_target);
  }
- void ColorSensor::SetGreen(double red,double green,double blue){
+void ColorSensor::SetGreen(double red,double green,double blue){
    green_target = Color(red, green, blue);
    color_matcher->AddColorMatch(green_target);
  }
- void ColorSensor::SetRed(double red,double green,double blue){
+void ColorSensor::SetRed(double red,double green,double blue){
    red_target = Color(red, green, blue);
    color_matcher->AddColorMatch(red_target);
  }
- void ColorSensor::SetYellow(double red,double green,double blue){
+void ColorSensor::SetYellow(double red,double green,double blue){
    yellow_target = Color(red, green, blue);
    color_matcher->AddColorMatch(yellow_target);
  }
- std::string ColorSensor::FindClosestColor(double confidance){
+std::string ColorSensor::FindClosestColor(double confidance){
     color_guess = color_matcher -> MatchClosestColor(color_sensor->GetColor(), confidance);
     if (color_guess == blue_target) {
       return "Blue";
@@ -35,9 +36,9 @@
     return color_sensor->GetColor();
  }
  std::string ColorSensor::GetFMSColor(){
-  std::string game_data;
-  game_data = DriverStation::GetInstance().GetGameSpecificMessage();
-  if(game_data.length() > 0){
+ std::string game_data;
+ game_data = DriverStation::GetInstance().GetGameSpecificMessage();
+ if(game_data.length() > 0){
     switch (game_data[0])
     {
       case 'B' :
@@ -56,7 +57,8 @@
         return  "n/a";
         break;
     }
-  } else {
+  } 
+  else {
     return  "n/a";
   }
  }
@@ -72,10 +74,11 @@
   }
   else if(closest_color == "Yellow"  && fms_color == "Y"){
     return 1;
-  }else{
+  }
+  else{
       return 0;
   }
- }
+}
 int ColorSensor::CountColors(){
   if(FindClosestColor(1) != last_color){
     count++;
