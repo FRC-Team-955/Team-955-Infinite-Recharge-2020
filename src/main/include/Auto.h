@@ -16,7 +16,8 @@
 
 class Auto : public frc2::CommandHelper<frc2::SequentialCommandGroup, Auto> {
 	public:
-		Auto (TalonSRX *drive_talon_right, TalonSRX *drive_talon_left, AHRS *navx) : drive_talon_right(drive_talon_right), drive_talon_left(drive_talon_left), navx(navx) {};
+		Auto (TalonSRX *drive_talon_right, TalonSRX *drive_talon_left, AHRS *navx) : 
+		drive_talon_right(drive_talon_right), drive_talon_left(drive_talon_left), navx(navx) {};
 
 		int CalculateEncoderCounts(int length_inches);
 		void MoveStraight(int distance_inches);
@@ -25,10 +26,6 @@ class Auto : public frc2::CommandHelper<frc2::SequentialCommandGroup, Auto> {
 		int RampSpeed(int velocity, int difference);
 
 		void ComplexAuto();
-
-
-
-
 	private:
 		TalonSRX *drive_talon_right;
 		TalonSRX *drive_talon_left;
