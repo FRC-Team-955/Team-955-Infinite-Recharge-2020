@@ -25,14 +25,12 @@ void Intake::DeployIntakeSRX(int input_button, int rotation_distance)
 
 void Intake::DeployIntakePNE(int input_button)
 {
-	bool button_state = joystick->GetRawButton(input_button);
+    bool button_state = joystick->GetRawButton(input_button);
 
     if (button_state == 1 and pneustate == 0 and toggle_state == 0){
     	pneu->Set(1 - pneu->Get());	
     	pneustate = 1 ;
-
-    
-   	}
+    }
     if (button_state == 0 and pneustate == 1) {
     	toggle_state = toggle_state + 1;
     }
