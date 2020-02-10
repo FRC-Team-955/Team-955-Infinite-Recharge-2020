@@ -3,7 +3,7 @@
 
 #include <ctre/Phoenix.h>
 #include "frc/WPILib.h"
-#include "Version.h"
+#include "version.h"
 
 #include <iostream>
 #include <fstream>
