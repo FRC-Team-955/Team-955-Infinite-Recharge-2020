@@ -11,9 +11,9 @@ left, right, lcalc, rcalc, and x dont need to have a value set in robot.cpp, but
 using namespace frc;
 
 void DriveBase::Drive(double left, double right, double lcalc, double rcalc, double &multi, double &x){
-  right = (joy0->GetRawAxis(1) + joy0->GetRawAxis(4));
-  left = (-1*joy0->GetRawAxis(1) - -1*joy0->GetRawAxis(4));
-  if (multi > 0 && joy->GetRawButton(1) == true && x > 10){
+  right = (joystick->GetRawAxis(1) + joystick->GetRawAxis(4));
+  left = (-1*joystick->GetRawAxis(1) - -1*joystick->GetRawAxis(4));
+  if (multi > 0 && joystick->GetRawButton(1) == true && x > 10){
     multi = multi / 3;        //the input is a decimal so it strts on slower mode and goes up to faster mode when divided by 3.... because of maths
     x = 0;
   } 
@@ -33,8 +33,8 @@ void DriveBase::Drive(double left, double right, double lcalc, double rcalc, dou
   lcalc = left;
   lcalc = lcalc * 0.75;
   rcalc = rcalc * 0.75;
-  tal1->Set(ControlMode::PercentOutput, lcalc);
-  tal3->Set(ControlMode::PercentOutput, rcalc);
+  talon_drivebase_left_connected->Set(ControlMode::PercentOutput, lcalc);
+  talon_drivebase_right_connected->Set(ControlMode::PercentOutput, rcalc);
   std::cout<<multi<<"  "<<right<<"  "<<left<<"  "<<std::endl;
 }
 
