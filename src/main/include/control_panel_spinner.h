@@ -4,7 +4,7 @@
 #include <iostream>
 #include "frc/WPILib.h"
 #include "ctre/Phoenix.h"
-#include "ColorSensor.h"
+#include "color_sensor.h"
 #include <string>
 #include <cmath>
 
