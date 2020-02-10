@@ -18,12 +18,12 @@ void TestMotorsFX::RunMotor(float output_percentage, int button_forward, int but
     	talon -> Set(ControlMode::PercentOutput, 0);
 	}
 
-	print->AddToPipeDelimitedFile("Time", print->ToString(timer->Get()), storage_header, storage);
-	print->AddToPipeDelimitedFile("Battery Voltage", print->ToString(DriverStation::GetInstance().GetBatteryVoltage()), storage_header, storage);
+	print->AddToPipeDelimitedFile("Time", print->ToString(timer->Get()), storage_header, storage, false);
+	print->AddToPipeDelimitedFile("Battery Voltage", print->ToString(DriverStation::GetInstance().GetBatteryVoltage()), storage_header, storage, false);
 	if (has_encoder == true) 
 	{
-		print->AddToPipeDelimitedFile("Talon Amperage", print->ToString(talon->GetOutputCurrent()), storage_header, storage);
-		print->AddToPipeDelimitedFile("Talon Velocity", print->ToString(talon->GetSelectedSensorVelocity(0)), storage_header, storage);
+		print->AddToPipeDelimitedFile("Talon Amperage", print->ToString(talon->GetOutputCurrent()), storage_header, storage, false);
+		print->AddToPipeDelimitedFile("Talon Velocity", print->ToString(talon->GetSelectedSensorVelocity(0)), storage_header, storage, false);
 	}
 	print->EndLoop(storage);
 	
