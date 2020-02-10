@@ -11,12 +11,12 @@ using namespace frc;
 
 class DriveBase {
    public:
-   DriveBase (Joystick *joy0, TalonSRX *tal1, TalonSRX *tal3) : joy(joy0), tal1(tal1), tal3(tal3) {};
+   DriveBase (Joystick *joystick, TalonSRX *talon_drivebase_left_connected, TalonSRX *talon_drivebase_right_connected) : joystick(joystick), talon_drivebase_left_connected(talon_drivebase_left_connected), talon_drivebase_right_connected(talon_drivebase_right_connected) {};
    void Drive(double left, double right, double lcalc, double rcalc, double &multi, double &x);
-       //Public variables and functions
+       
    private:
-       Joystick *joy0;
-       TalonSRX *tal1;
-       TalonSRX *tal3;
+       Joystick *joystick;
+       TalonSRX *talon_drivebase_left_connected;
+       TalonSRX *talon_drivebase_right_connected;
 };
 #endif
