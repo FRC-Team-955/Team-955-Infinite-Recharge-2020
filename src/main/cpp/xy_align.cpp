@@ -29,7 +29,7 @@ double XYalign::test(){
   else if (horizontal_offset -degree > 0.20 /*and Align == false*/) {
     //left_drive=  HorizontalOffset/ 45;
     std::cout << "Going left" << std::endl;
-    left_drive = (horizontal_offsett -degree) * -0.05 ;
+    left_drive = (horizontal_offset -degree) * -0.05 ;
     right_drive = 0;
   }
 
