@@ -10,9 +10,9 @@
 
 using namespace frc;
 
-class Elevate{
+class Elevator{
     public:
-        Elevate(TalonSRX *talon_drive_right_enc, frc::Joystick * joystick): talon_drive_right_enc(talon_drive_right_enc),joystick(joystick){};
+        Elevator(TalonSRX *talon_drive_right_enc, frc::Joystick * joystick): talon_drive_right_enc(talon_drive_right_enc),joystick(joystick){};
         void Elevate();
     
     private:
