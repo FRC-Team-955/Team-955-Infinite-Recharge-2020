@@ -1,4 +1,4 @@
-#include "FunctionToggle.h"
+#include "function_toggle.h"
 using namespace frc;
 
 bool FunctionToggle::ToggleFunction(){

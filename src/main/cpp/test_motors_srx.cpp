@@ -1,19 +1,21 @@
-#include <TestMotorsFX.h>
+#include <test_motors_srx.h>
 #include <ctre/Phoenix.h>
 #include "frc/WPILib.h"
 using namespace frc;
+using namespace std;
 
-void TestMotorsFX::RunMotor(float output_percentage, int button_forward, int button_backward, bool has_encoder)
+void TestMotorsSRX::RunMotor(float output_percentage, int button_forward, int button_backward, bool has_encoder)
 {
-	if (joystick -> GetRawButton(1))            //Press A to run forward
+	if (joystick -> GetRawButton(button_forward))            //Press button_foward to run forward
     {
     	talon -> Set(ControlMode::PercentOutput, output_percentage);
+		cout<<"Get RunMotor Joystick Input! Just not running it."<<endl;
     }
-    else if (joystick -> GetRawButton(2))            //Press B to run backward
+    else if (joystick -> GetRawButton(button_backward))            //Press button_backward to run backward
     {
     	talon -> Set(ControlMode::PercentOutput, output_percentage); 
 	}
-	else           //Press Y to stop the motor (or, like... disable it)
+	else           //Dont press to stop the motor (or, like... disable it)
 	{
     	talon -> Set(ControlMode::PercentOutput, 0);
 	}
@@ -24,22 +26,22 @@ void TestMotorsFX::RunMotor(float output_percentage, int button_forward, int but
 	{
 		print->AddToPipeDelimitedFile("Talon Amperage", print->ToString(talon->GetOutputCurrent()), storage_header, storage);
 		print->AddToPipeDelimitedFile("Talon Velocity", print->ToString(talon->GetSelectedSensorVelocity(0)), storage_header, storage);
-	}
+	}	
 	print->EndLoop(storage);
 	
 }
 
-void TestMotorsFX::SaveVersionNum()
+void TestMotorsSRX::SaveVersionNum()
 {
 	int version = print -> SaveVersionNumber();
     std::cout<<"TestMotors Luke V"<<version<<std::endl;
 }
 
-void TestMotorsFX::SaveData()
+void TestMotorsSRX::SaveData()
 {
 	if (storage.find(std::string("|")) != std::string::npos) print->CreateSaveFile(storage_header + "\n" + storage);
 }
-void TestMotorsFX::StartTimer()
+void TestMotorsSRX::StartTimer()
 {
 	timer -> Start();
 }

@@ -1,5 +1,5 @@
-#ifndef PID_H
-#define PID_H
+#ifndef PID
+#define PID
 
 #include <iostream>
 #include <WPILibVersion.h>
