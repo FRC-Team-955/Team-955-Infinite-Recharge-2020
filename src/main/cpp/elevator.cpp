@@ -2,7 +2,7 @@
 
 using namespace frc;
 
-void Elevate::Elevate(){
+void Elevator::Elevate(){
   yp = joystick->GetRawAxis(1);
   talon_drive_right_enc->Set(ControlMode::PercentOutput,yp);
 }
