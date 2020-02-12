@@ -1,5 +1,5 @@
-#ifndef ELEVATOR
-#define ELEVATOR
+#ifndef ELEVATOR_AXIS
+#define ELEVATOR_AXIS
 #include "frc/WPILib.h"
 #include <iostream>
 #include <frc/smartdashboard/SmartDashboard.h>
