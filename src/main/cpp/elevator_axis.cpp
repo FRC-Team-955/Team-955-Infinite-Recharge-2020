@@ -5,7 +5,7 @@ using namespace frc;
 double Elevate::elev(){
   
   int yp = joy0->GetRawAxis(raise_lower_hook_axis);
-  talon_drive_right_enc->Set(ControlMode::PercentOutput,yp);
+  talon_elevator_enc->Set(ControlMode::PercentOutput,yp);
 
 
 
