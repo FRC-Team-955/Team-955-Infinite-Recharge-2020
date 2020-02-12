@@ -9,9 +9,10 @@ const int joy_0_idx = 0;
 const int align_button_idx = 3;
 const int set_target_button_idx = 2;
 
-const int foward_back_drivebase_axis_idx = 1;
+const int forward_back_drivebase_axis_idx = 1;
 const int left_right_drivebase_axis_idx = 4;
 const int sensitivity_scale_cont_button_idx = 0;
+const int test = 4;
 
     //Joystick 1
 
