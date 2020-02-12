@@ -35,7 +35,7 @@ TalonSRX *talon_winch_enc = a member of the TalonSRX the will spool in the winch
    </td>
   </tr>
   <tr>
-   <td><strong>void RaiseWinch(int tics)</strong>
+   <td><strong>void RaiseWinchButton(int tics)</strong>
 <p>
 Spools in the winch a given number of tics
 <p>
@@ -43,9 +43,19 @@ Parameters:
 <p>
 int tics = the number of tics the winch will spin when lifting the robot
 <p>
-Useage:
+Usage:
 <p>
 Used to raise the robot after ataching the hook in endgame
+   </td>
+  </tr>
+  <tr>
+   <td><strong>void RaiseWinchAxis()</strong>
+<p>
+Spools in the according to a joystick
+<p>
+Usage:
+<p>
+Use to raise the robot using a joystick input
    </td>
   </tr>
    <td><strong>void LowerWinch()</strong>
