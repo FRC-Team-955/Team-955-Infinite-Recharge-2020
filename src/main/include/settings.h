@@ -33,6 +33,7 @@ const int elevator_up_button_idx = 0;
 const int elevator_down_button_idx = 0;
 
 const int pull_winch_in_button_idx = 0;
+const int pull_winch_in_axis_idx = 0;
 
 const int deploy_intake_button_idx = 0;
 const int run_intake_button_idx = 0;
