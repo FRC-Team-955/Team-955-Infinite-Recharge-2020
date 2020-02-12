@@ -25,6 +25,8 @@ const int toggle_rev_shooter_button_idx = 6;
 const int hopper_button_idx = 3;
 
 const int elevator_up_axis_idx = 0;
+const int elevator_down_axis_idx = 0;
+const int elevator_up_button_idx = 0;
 const int elevator_down_button_idx = 0;
 
 const int pull_winch_in_button_idx = 0;
