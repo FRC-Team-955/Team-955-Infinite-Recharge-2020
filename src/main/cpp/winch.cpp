@@ -7,7 +7,9 @@ void Winch::RaiseWinchAxis(){
 }
 
 void Winch::RaiseWinchButton(int tics){
-	talon_winch_enc -> Set(ControlMode::Position, tics);
+	if(joystick -> GetRawButtonPressed(pull_winch_in_button_idx)){
+		talon_winch_enc -> Set(ControlMode::Position, tics);
+	}
 }
 
 void Winch::LowerWinch(){
