@@ -13,7 +13,7 @@ class Elevate{
     Elevate(TalonSRX * talon_elevator_enc,
         frc::Joystick * joy0
         ): 
-        talon_drive_right_enc(talon_elevator_enc),
+        talon_elevator_enc(talon_elevator_enc),
         joy0(joy0){};
     double left_drive;
     double right_drive;
