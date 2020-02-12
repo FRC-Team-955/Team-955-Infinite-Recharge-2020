@@ -16,6 +16,8 @@ const int test = 4;
 
     //Joystick 1
 
+const in joy_1_idx = 1;
+
 const int color_wheel_oper_1_button_idx = 1;
 const int color_wheel_oper_2_button_idx = 2;
 
