@@ -28,6 +28,7 @@ const int raise_hook_axis_idx = 0;
 const int lower_hook_button_idx = 0;
 
 const int pull_winch_in_button_idx = 0;
+const int pull_winch_in_axis_idx = 0;
 
 //itake is either one axis or two buttons
 
