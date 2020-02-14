@@ -18,7 +18,7 @@ class Elevate{
     double left_drive;
     double right_drive;
     bool Align;
-    void elev();
+    void elevator();
     private:
     Joystick *joystick;
     TalonSRX * talon_elevator_enc;
