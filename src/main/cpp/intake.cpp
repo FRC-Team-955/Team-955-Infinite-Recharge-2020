@@ -2,6 +2,7 @@
 #include <ctre/Phoenix.h>
 #include "frc/WPILib.h"
 #include "settings.h"
+#include "togglemotor.h"
 #include <iostream>
 using namespace frc;
 
@@ -55,7 +56,7 @@ void Intake::RunIntake(float output_percentage)
 {
     if (joystick -> GetRawButton(run_intake_button_idx))            //Press button_foward to run forward
     {
-    	intake_talon -> Set(ControlMode::PercentOutput, output_percentage);
+    	intake_toggle -> Toggle(output_percentage, );
 
     } else           //Dont press to stop the motor (or, like... disable it)
     {
