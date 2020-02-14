@@ -5,11 +5,11 @@
 #include "frc/WPILib.h"
 
 class FunctionToggle {
-   public:
+    public:
        FunctionToggle (frc::Joystick *joystick) : joystick(joystick) {};
        bool ToggleFunction();
    
-   private:
+    private:
         frc::Joystick *joystick;
         bool is_pressed = false;
         bool toggle = false;
