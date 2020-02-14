@@ -23,9 +23,9 @@ class Intake {
     
     
   	private:
-		    TalonSRX *deployment_talon;
+        TalonSRX *deployment_talon;
         TalonSRX *intake_talon;
-		    Joystick *joystick;
+        Joystick *joystick;
     
 };
 
