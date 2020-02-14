@@ -5,15 +5,8 @@
 #include "frc/WPILib.h"
 #include "version.h"
 
-#include <iostream>
-#include <fstream>
-#include <cstdlib>
-#include <string>
-#include <ctime>
-#include <sstream>
-
 using namespace frc;
-using namespace std;
+
 
 
 class TestMotorsSRX {
