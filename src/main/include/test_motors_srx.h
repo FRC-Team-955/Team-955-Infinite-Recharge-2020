@@ -5,7 +5,7 @@
 #include "frc/WPILib.h"
 #include "version.h"
 
-using namespace frc;
+
 
 
 
