@@ -58,9 +58,9 @@ void Intake::RunIntake(float output_percentage)
     	intake_talon -> Set(ControlMode::PercentOutput, output_percentage);
 
     } else           //Dont press to stop the motor (or, like... disable it)
-	{
-    	intake_talon -> Set(ControlMode::PercentOutput, 0);
-	}
+    {
+        intake_talon -> Set(ControlMode::PercentOutput, 0);
+    }
 } 
 void Intake::ApplyDeploySoftLimits(int forward_limit, int backward_limit)
 {
