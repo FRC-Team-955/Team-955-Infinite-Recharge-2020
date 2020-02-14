@@ -13,14 +13,15 @@ using namespace frc;
 class Shooter{
     public:
     Shooter(TalonSRX * talon_shooter_left,TalonSRX * talon_shooter_right, frc::Joystick * joy): talon_shooter_left(talon_shooter_left), talon_shooter_right(talon_shooter_right), joy(joy){};
-    //void Spin_Motor_Velocity();
-    void Spin_Motor_PercentOutput();
-    void Off_Motor();
+    void SpinMotorVelocity();
+    void SpinMotorPercentOutput();
+    void SpinMotorAxis();
     private:
-    bool Toogle_Position_Shooter = false;
+    bool toggle_position_shooter = false;
  
     TalonSRX * talon_shooter_left;
     TalonSRX * talon_shooter_right;
    Joystick * joy;
 };
+
 #endif
