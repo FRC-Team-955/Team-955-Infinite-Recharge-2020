@@ -22,9 +22,8 @@ class Intake {
     bool deploy_state = 0;
     void DeployIntakeSRX(int input_button, int rotation_distance);
     void DeployIntakePNE(int input_button);
-    bool toggle_state = 0;
-    bool pneustate = 0;
-    bool state_from_button = 0;
+    bool button_check = 0;
+    bool motor_check = 0;
     void RunIntake(int input_button, float output_percentage);
     void ApplyDeploySoftLimits(int forward_limit, int backward_limit);
     
