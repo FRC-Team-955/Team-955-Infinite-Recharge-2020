@@ -3,21 +3,17 @@
 
 #include "frc/WPILib.h"
 #include <iostream>
-#include <string>
-#include "ctre/Phoenix.h"
-#include <frc/smartdashboard/SmartDashboard.h>
 
-using namespace frc;
 
 class CompresserClass {
-	public:
-		CompresserClass (Compressor *compresser) :  compresser(compresser) {};
-		void CompresserOff();
-		void CompresserOn();
-		void CompresserBatteryVoltage(int volts);
-	private:
-		Compressor *compresser;
-		int volts;
+    public:
+	    CompresserClass (frc::Compressor *compresser) :  compresser(compresser) {};
+	    void CompresserOff();
+	    void CompresserOn();
+	    void CompresserBatteryVoltage(int volts);
+    private:
+	    frc::Compressor *compresser;
+	    int volts;
 };
 
 #endif

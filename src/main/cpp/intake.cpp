@@ -1,11 +1,13 @@
 #include <intake.h>
 #include <ctre/Phoenix.h>
 #include "frc/WPILib.h"
+#include "settings.h"
 #include <iostream>
 using namespace frc;
-using namespace std;
 
-void Intake::DeployIntakeSRX(int input_button, int rotation_distance)
+
+/*
+void Intake::DeployIntakeSRX(int rotation_distance)
 {
     if (joystick -> GetRawButton(input_button))
     {
@@ -22,35 +24,43 @@ void Intake::DeployIntakeSRX(int input_button, int rotation_distance)
         }
     }
 }
+*/
 
-void Intake::DeployIntakePNE(int input_button)
+void Intake::DeployIntakePNE()
 {
-    bool button_state = joystick->GetRawButton(input_button);
-
-    if (button_state == 1 and pneustate == 0 and toggle_state == 0){
-    	pneu->Set(1 - pneu->Get());	
-    	pneustate = 1 ;
+    if (x > 10){
+        if (joystick->GetRawButton(deploy_intake_button_idx) == false && button_check == true) {
+            button_check = false;
+        } else if (joystick->GetRawButton(1) == true && motor_check == false && button_check == false) {
+            solenoid_intake_right_0->Set(!solenoid_intake_right_0->Get());
+            solenoid_intake_right_1->Set(!solenoid_intake_right_1->Get());	
+            solenoid_intake_left_0->Set(!solenoid_intake_left_0->Get());
+            solenoid_intake_left_1->Set(!solenoid_intake_left_1->Get());            motor_check = true;
+            button_check = true;
+            x = 0;
+        } else if (joystick->GetRawButton(deploy_intake_button_idx) == true && motor_check == true && button_check == false) {
+            solenoid_intake_right_0->Set(!solenoid_intake_right_0->Get());
+            solenoid_intake_right_1->Set(!solenoid_intake_right_1->Get());	
+            solenoid_intake_left_0->Set(!solenoid_intake_left_0->Get());
+            solenoid_intake_left_1->Set(!solenoid_intake_left_1->Get());            motor_check = false;
+            button_check = true;
+            x = 0;
+        } 
+    } else {
+        x += 1;
     }
-    if (button_state == 0 and pneustate == 1) {
-    	toggle_state = toggle_state + 1;
-    }
-    if (button_state == 1 and pneustate == 1 and toggle_state == 1) {
-    	pneu->Set(1 - pneu->Get());
-    	pneustate = 0 ;
-    	toggle_state = 0;
-	}
 }
 
-void Intake::RunIntake(int input_button, float output_percentage)
+void Intake::RunIntake(float output_percentage)
 {
-    if (joystick -> GetRawButton(input_button))            //Press button_foward to run forward
+    if (joystick -> GetRawButton(run_intake_button_idx))            //Press button_foward to run forward
     {
     	intake_talon -> Set(ControlMode::PercentOutput, output_percentage);
 
     } else           //Dont press to stop the motor (or, like... disable it)
-	{
-    	intake_talon -> Set(ControlMode::PercentOutput, 0);
-	}
+    {
+        intake_talon -> Set(ControlMode::PercentOutput, 0);
+    }
 } 
 void Intake::ApplyDeploySoftLimits(int forward_limit, int backward_limit)
 {

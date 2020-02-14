@@ -2,14 +2,14 @@
 #include <ctre/Phoenix.h>
 #include "frc/WPILib.h"
 using namespace frc;
-using namespace std;
+
 
 void TestMotorsSRX::RunMotor(float output_percentage, int button_forward, int button_backward, bool has_encoder)
 {
 	if (joystick -> GetRawButton(button_forward))            //Press button_foward to run forward
     {
     	talon -> Set(ControlMode::PercentOutput, output_percentage);
-		cout<<"Get RunMotor Joystick Input! Just not running it."<<endl;
+		std::cout<<"Get RunMotor Joystick Input! Just not running it."<<std::endl;
     }
     else if (joystick -> GetRawButton(button_backward))            //Press button_backward to run backward
     {
