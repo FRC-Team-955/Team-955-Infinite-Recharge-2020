@@ -45,7 +45,7 @@ None
 <p>
 Usage:
 <p>
-To be run in TeleopPeriodic to spin the motor with the control of an axis (Remember to use Follower to the other motor)
+To be run in TeleopPeriodic to spin the motor with the control of an axis (Use Follower for the other motor)
    </td>
   </tr>
   <tr>
