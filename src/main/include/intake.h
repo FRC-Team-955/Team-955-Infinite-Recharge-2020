@@ -4,7 +4,6 @@
 #include <ctre/Phoenix.h>
 #include "frc/WPILib.h"
 
-using namespace frc;
 
 
 
