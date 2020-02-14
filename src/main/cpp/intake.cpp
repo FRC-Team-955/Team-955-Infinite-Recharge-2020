@@ -28,30 +28,27 @@ void Intake::DeployIntakeSRX(int rotation_distance)
 
 void Intake::DeployIntakePNE()
 {
-    bool button_state = joystick->GetRawButton(deploy_intake_button_idx);
-
-    if (button_state == 1 and pneustate == 0 and toggle_state == 0){
-        /*
-    	solenoid_intake_right_0->Set(!solenoid_intake_right_0->Get());
-        solenoid_intake_right_1->Set(1 - solenoid_intake_right_1->Get());	
-        solenoid_intake_left_0->Set(1 - solenoid_intake_left_0->Get());
-        solenoid_intake_left_1->Set(1 - solenoid_intake_left_1->Get());
-        */
-    	pneustate = 1;
+    if (x > 10){
+        if (joystick->GetRawButton(deploy_intake_button_idx) == false && button_check == true) {
+            button_check = false;
+        } else if (joystick->GetRawButton(1) == true && motor_check == false && button_check == false) {
+            solenoid_intake_right_0->Set(!solenoid_intake_right_0->Get());
+            solenoid_intake_right_1->Set(!solenoid_intake_right_1->Get());	
+            solenoid_intake_left_0->Set(!solenoid_intake_left_0->Get());
+            solenoid_intake_left_1->Set(!solenoid_intake_left_1->Get());            motor_check = true;
+            button_check = true;
+            x = 0;
+        } else if (joystick->GetRawButton(deploy_intake_button_idx) == true && motor_check == true && button_check == false) {
+            solenoid_intake_right_0->Set(!solenoid_intake_right_0->Get());
+            solenoid_intake_right_1->Set(!solenoid_intake_right_1->Get());	
+            solenoid_intake_left_0->Set(!solenoid_intake_left_0->Get());
+            solenoid_intake_left_1->Set(!solenoid_intake_left_1->Get());            motor_check = false;
+            button_check = true;
+            x = 0;
+        } 
+    } else {
+        x += 1;
     }
-    if (button_state == 0 and pneustate == 1) {
-    	toggle_state = toggle_state + 1;
-    }
-    if (button_state == 1 and pneustate == 1 and toggle_state == 1) {
-        /*
-    	solenoid_intake_right_0->Set(1 - solenoid_intake_right_0->Get());
-        solenoid_intake_right_1->Set(1 - solenoid_intake_right_1->Get());	
-        solenoid_intake_left_0->Set(1 - solenoid_intake_left_0->Get());
-        solenoid_intake_left_1->Set(1 - solenoid_intake_left_1->Get());
-        */
-    	pneustate = 0 ;
-    	toggle_state = 0;
-	}
 }
 
 void Intake::RunIntake(float output_percentage)
