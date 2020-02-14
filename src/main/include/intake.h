@@ -16,8 +16,8 @@ using namespace std;
 
 class Intake {
 	public:
-		Intake (TalonSRX *deployment_talon, Solenoid *pneu, TalonSRX *intake_talon, Joystick *joystick) 
-    : deployment_talon(deployment_talon), pneu(pneu), intake_talon(intake_talon), joystick(joystick) {};
+		Intake (TalonSRX *deployment_talon, TalonSRX *intake_talon, Joystick *joystick) 
+    : deployment_talon(deployment_talon), intake_talon(intake_talon), joystick(joystick) {};
 
     bool deploy_state = 0;
     void DeployIntakeSRX(int input_button, int rotation_distance);
@@ -31,7 +31,6 @@ class Intake {
     
 	private:
 		TalonSRX *deployment_talon;
-    Solenoid *pneu;
     TalonSRX *intake_talon;
 		Joystick *joystick;
     
