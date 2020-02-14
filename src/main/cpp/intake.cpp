@@ -4,7 +4,7 @@
 #include "settings.h"
 #include <iostream>
 using namespace frc;
-using namespace std;
+
 
 /*
 void Intake::DeployIntakeSRX(int rotation_distance)
