@@ -4,14 +4,8 @@
 #include <ctre/Phoenix.h>
 #include "frc/WPILib.h"
 
-#include <iostream>
-#include <fstream>
-#include <cstdlib>
-#include <string>
-#include <ctime>
-#include <sstream>
 using namespace frc;
-using namespace std;
+
 
 
 class Intake {
