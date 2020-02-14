@@ -4,14 +4,13 @@
 #include <ctre/Phoenix.h>
 #include "frc/WPILib.h"
 
-using namespace frc;
 
 
 
 class Intake {
     public:
-        Intake (TalonSRX *deployment_talon, TalonSRX *intake_talon, Joystick *joystick) 
-        : deployment_talon(deployment_talon), intake_talon(intake_talon), joystick(joystick) {};
+        Intake (TalonSRX *intake_talon, Solenoid *solenoid_intake_right_0, Solenoid *solenoid_intake_right_1, Solenoid *solenoid_intake_left_0, Solenoid *solenoid_intake_left_1, Joystick *joystick) 
+        : intake_talon(intake_talon), solenoid_intake_right_0(solenoid_intake_right_0), solenoid_intake_right_1(solenoid_intake_right_1), solenoid_intake_left_0(solenoid_intake_left_0), solenoid_intake_left_1(solenoid_intake_left_1), joystick(joystick) {};
 
         bool deploy_state = 0;
         void DeployIntakeSRX(int input_button, int rotation_distance);
@@ -23,8 +22,11 @@ class Intake {
     
     
     private:
-        TalonSRX *deployment_talon;
         TalonSRX *intake_talon;
+        Solenoid *solenoid_intake_right_0;
+        Solenoid *solenoid_intake_right_1;
+        Solenoid *solenoid_intake_left_0;
+        Solenoid *solenoid_intake_left_1;
         Joystick *joystick;
     
 };
