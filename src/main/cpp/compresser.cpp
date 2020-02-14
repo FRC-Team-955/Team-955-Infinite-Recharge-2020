@@ -6,12 +6,12 @@ void CompresserClass::CompresserOn(){
 }
 
 void CompresserClass::CompresserOff(){
-	compresser -> Stop();
+    compresser -> Stop();
 }
 void CompresserClass::CompresserBatteryVoltage(int volts){
     if(DriverStation::GetInstance().GetBatteryVoltage() < volts){
-		compresser -> Stop();
-	}else{
-		compresser -> Start();
-	}
+	    compresser -> Stop();
+    }else{
+	    compresser -> Start();
+    }
 }
