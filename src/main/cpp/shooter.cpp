@@ -1,22 +1,21 @@
-#include "Shooter.h"
+#include "shooter.h"
 
 using namespace frc;
-/*void Shooter::Spin_Motor_Velocity(){
-    talon_shooter_right -> Set(ControlMode::Velocity,500);
-    //talon_shooter_left -> Set(ControlMode::Follower, talon_shooter_noconnected_num);
-}*/
-void Shooter::Spin_Motor_PercentOutput(){
-    if (joy -> GetRawButton(toggle_rev_shooter_button_idx) == 1 and Toogle_Position_Shooter == false){
-    talon_shooter_right -> Set(ControlMode::PercentOutput , 1);
-    //talon_shooter_left -> Set(ControlMode::Follower, talon_shooter_noconnected_num);
-    Toogle_Position_Shooter = true;
+void Shooter::SpinMotorVelocity(){
+talon_shooter_right -> Set(ControlMode::Velocity,500);
+}
+void Shooter::SpinMotorAxis(){
+    talon_shooter_right -> Set(ControlMode::PercentOutput , joy -> GetRawAxis(toggle_rev_shooter_button_idx));
+}
+void Shooter::SpinMotorPercentOutput(){
+    if (joy -> GetRawButtonPressed(1) == 1){
+        if (toggle_position_shooter == false){
+            talon_shooter_right -> Set(ControlMode::PercentOutput , 1);
+        }
+        if (toggle_position_shooter == true){
+            talon_shooter_right -> Set(ControlMode::PercentOutput,0);
+        }
+   toggle_position_shooter =!toggle_position_shooter;
     }
 }
-void Shooter::Off_Motor(){
-    if (joy -> GetRawButton(toggle_rev_shooter_button_idx) == 1 and Toogle_Position_Shooter == true){
-    talon_shooter_right -> Set(ControlMode::PercentOutput,0);
-     //talon_shooter_left -> Set(ControlMode::Follower, talon_shooter_noconnected_num);
-     Toogle_Position_Shooter = false;
-    }
-   
-}
+
