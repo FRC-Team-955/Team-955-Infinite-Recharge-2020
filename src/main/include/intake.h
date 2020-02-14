@@ -22,7 +22,7 @@ class Intake {
         void ApplyDeploySoftLimits(int forward_limit, int backward_limit);
     
     
-  	private:
+    private:
         TalonSRX *deployment_talon;
         TalonSRX *intake_talon;
         Joystick *joystick;
