@@ -1,5 +1,5 @@
-#ifndef ELEVATOR
-#define ELEVATOR
+#ifndef ELEVATOR_AXIS
+#define ELEVATOR_AXIS
 #include "frc/WPILib.h"
 #include <iostream>
 #include <frc/smartdashboard/SmartDashboard.h>
@@ -7,20 +7,21 @@
 #include <ctre/Phoenix.h>
 #include "networktables/NetworkTable.h"
 #include "networktables/NetworkTableInstance.h" 
-using namespace frc;
+
 class Elevate{
     public:
     Elevate(TalonSRX * talon_elevator_enc,
-        frc::Joystick * joy0
+        Joystick * joystick
         ): 
         talon_elevator_enc(talon_elevator_enc),
-        joy0(joy0){};
+        joystick(joystick){};
     double left_drive;
     double right_drive;
     bool Align;
-    double elev();
+    void elev();
     private:
-    Joystick *joy0;
+    Joystick *joystick;
+    TalonSRX * talon_elevator_enc;
     
 };
 #endif
