@@ -9,7 +9,7 @@ using namespace frc;
 class ToggleMotor {
    public:
    ToggleMotor (Joystick *joystick, TalonSRX *talon) : joystick(joystick), talon(talon) {};
-   void Toggle(double power, bool &motor_check, bool &button_check, int &x);
+   void Toggle(double power, bool &motor_check, bool &button_check, int button_idx);
        //Public variables and functions
    private:
        Joystick *joystick;
