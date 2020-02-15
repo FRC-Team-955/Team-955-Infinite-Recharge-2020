@@ -24,6 +24,8 @@ class Robot : public frc::TimedRobot {
   void AutonomousPeriodic() override;
   void TeleopInit() override;
   void TeleopPeriodic() override;
+  void TalonEncPrintOuts(TalonSRX *talon_enc, std::string talon_name);
+  void TalonNoEncPrintOuts(TalonSRX *talon_enc, std::string talon_name);
   void TestPeriodic() override;
   void DisabledInit() override;
 
