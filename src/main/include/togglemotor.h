@@ -3,16 +3,18 @@
 #include <iostream>
 #include "frc/WPILib.h"
 #include "ctre/Phoenix.h"
-#include <string>
-#include <cmath>
-using namespace frc;
+
 class ToggleMotor {
    public:
-   ToggleMotor (Joystick *joystick, TalonSRX *talon) : joystick(joystick), talon(talon) {};
-   void Toggle(double power, bool &motor_check, bool &button_check, int button_idx);
-       //Public variables and functions
+     ToggleMotor (frc::Joystick *joystick, TalonSRX *talon) : joystick(joystick), talon(talon) {};
+     void Toggle(int toggle_motor_button);
+
    private:
-       Joystick *joystick;
-       TalonSRX *talon;
+     bool motor_check = false;
+     bool button_check = false;
+     double power = 0.25;
+     frc::Joystick *joystick;
+     TalonSRX *talon;
+     
 };
 #endif
