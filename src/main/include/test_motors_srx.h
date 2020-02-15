@@ -5,10 +5,6 @@
 #include "frc/WPILib.h"
 #include "version.h"
 
-
-
-
-
 class TestMotorsSRX {
 	public:
 		TestMotorsSRX (TalonSRX *talon, frc::Joystick *joystick, Version *print, frc::Timer *timer, std::string storage, std::string storage_header)

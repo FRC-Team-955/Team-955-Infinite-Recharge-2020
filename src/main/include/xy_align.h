@@ -30,9 +30,9 @@ class XYalign{
             double test();
     private:
         TalonSRX *talon_drive_right_enc;
+        TalonSRX *talon_drive_right_noenc;
         TalonSRX *talon_drive_left_enc;
         TalonSRX *talon_drive_left_noenc;
-        TalonSRX *talon_drive_right_noenc;
         Joystick *joy0;
         AHRS *ahrs; 
         double degree;
