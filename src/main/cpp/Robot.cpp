@@ -16,61 +16,75 @@
 #include "drivebase.h"
 #include "settings.h"
 #include "intake.h"
+#include "hopper.h"
+#include "elevator.h"
+#include "winch.h"
+#include "shooter.h"
 
 using namespace frc;
 
-TalonSRX *talon_drive_left_noenc, *talon_drive_left_enc, *talon_drive_right_enc, *talon_drive_right_noenc, *intake_talon;
+TalonSRX *talon_drive_left_noenc, *talon_drive_left_enc, *talon_drive_right_enc, *talon_drive_right_noenc, *talon_intake, *talon_elevator, *talon_winch, *talon_hopper;
+TalonFX *talon_shooter_connected, *talon_shooter_noconnected;
 Solenoid *solenoid_intake_left_0, *solenoid_intake_left_1, *solenoid_intake_right_6, *solenoid_intake_right_7;
-ToggleMotor *toggle;
-Intake *intake;
-DriveBase *drivebase;
-Joystick *joystick;
+Joystick *joystick0, *joystick1;
+
+ToggleMotor *toggle0, *toggle1;
 Version *print;
 Timer *timer;
+
+Intake *intake;
+DriveBase *drivebase;
+Hopper *hopper;
+Elevator *elevator;
+Winch *winch;
+Shooter *shooter;
 
 double multi = 1;
 double x = 0;
 
 std::string storage = "";
 std::string storage_header = "";
-std::string filename = "Drivebase";
+std::string filename = "ScrimmageCode";
 
-int num_talon_drive_left_noenc = 2;
-int num_talon_drive_right_noenc = 3;
-int num_talon_drive_left_enc = 1;
-int num_talon_drive_right_enc = 4;
 
 void Robot::RobotInit() {
 	talon_drive_left_noenc = new TalonSRX(num_talon_drive_left_noenc);
 	talon_drive_left_enc = new TalonSRX(num_talon_drive_left_enc);
 	talon_drive_right_enc = new TalonSRX(num_talon_drive_right_enc);
 	talon_drive_right_noenc = new TalonSRX(num_talon_drive_right_noenc);
-
-	intake_talon = new TalonSRX(7);
-
-	solenoid_intake_left_0 = new Solenoid(0);
-	solenoid_intake_left_1 = new Solenoid(1);
-	solenoid_intake_right_6 = new Solenoid(6);
-	solenoid_intake_right_7 = new Solenoid(7);
-
-	
-
+	talon_intake = new TalonSRX(num_talon_intake);
+	talon_winch = new TalonSRX(num_talon_winch);
+	talon_elevator = new TalonSRX(num_talon_elevator);
+	talon_hopper = new TalonSRX(num_talon_hopper);
 
 	talon_drive_left_noenc->SetInverted(1);
 	talon_drive_left_noenc->Set(ControlMode::Follower, num_talon_drive_left_enc);
-
 	talon_drive_right_noenc->Set(ControlMode::Follower, num_talon_drive_right_enc);
 
-	joystick = new Joystick(0);
+
+	talon_shooter_connected = new TalonFX(num_talon_shooter_connected);
+	talon_shooter_noconnected = new TalonFX(num_talon_shooter_noconnected);
+
+	solenoid_intake_left_0 = new Solenoid(num_solenoid_intake_left_0);
+	solenoid_intake_left_1 = new Solenoid(num_solenoid_intake_left_1);
+	solenoid_intake_right_6 = new Solenoid(num_solenoid_intake_right_6);
+	solenoid_intake_right_7 = new Solenoid(num_solenoid_intake_right_7);
+
+	joystick0 = new Joystick(0);
+	joystick1 = new Joystick(1);
 
 	print = new Version(filename);
 	timer = new Timer();
+	toggle0 = new ToggleMotor(joystick0);
+	toggle1 = new ToggleMotor(joystick1);
 
-	drivebase = new DriveBase(joystick, talon_drive_left_enc, talon_drive_right_enc);
 
-	toggle = new ToggleMotor(joystick);
-
-	intake = new Intake(toggle, intake_talon, solenoid_intake_right_6, solenoid_intake_right_7, solenoid_intake_left_0, solenoid_intake_left_1, joystick);
+	drivebase = new DriveBase(joystick0, talon_drive_left_enc, talon_drive_right_enc);
+	intake = new Intake(toggle1, talon_intake, solenoid_intake_right_6, solenoid_intake_right_7, solenoid_intake_left_0, solenoid_intake_left_1, joystick1);
+	hopper = new Hopper(toggle1, talon_hopper);
+	elevator = new Elevator(talon_elevator, joystick1);
+	winch = new Winch(talon_winch, joystick1);
+	shooter = new Shooter(talon_shooter_connected, talon_shooter_noconnected, joystick1);
 
 	std::cout<<filename<<" V"<<print->SaveVersionNumber()<<std::endl;
 }
@@ -88,7 +102,12 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() {
 	drivebase->Drive(multi, x);
 	intake->DeployIntakePNE();
-	intake->RunIntake(0.5);
+	intake->RunIntake(-0.5);
+	hopper->Toggle();
+	elevator->Elevate();
+	winch->RaiseWinchAxis();
+	shooter->SpinMotorAxis();
+
 	print->AddToPipeDelimitedFile("Time", print->ToString(timer->Get()), storage_header, storage, false);
 	print->AddToPipeDelimitedFile("Battery Voltage", print->ToString(DriverStation::GetInstance().GetBatteryVoltage()), storage_header, storage, false);
 	
