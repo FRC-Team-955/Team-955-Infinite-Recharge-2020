@@ -13,7 +13,7 @@ void TestMotorsSRX::RunMotor(float output_percentage, int button_forward, int bu
     }
     else if (joystick -> GetRawButton(button_backward))            //Press button_backward to run backward
     {
-    	talon -> Set(ControlMode::PercentOutput, output_percentage); 
+    	talon -> Set(ControlMode::PercentOutput, -output_percentage); 
 	}
 	else           //Dont press to stop the motor (or, like... disable it)
 	{
