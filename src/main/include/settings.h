@@ -42,25 +42,25 @@ const int run_intake_button_idx = 0;
 
 //Talons
 
-const int talon_drivebase_left_noenc_num = 1;
-const int talon_drivebase_left_enc_num = 2;
-const int talon_drivebase_right_noenc_num = 3;
-const int talon_drivebase_right_enc_num = 4;
+const int num_talon_drive_left_noenc = 2;
+const int num_talon_drive_right_noenc = 3;
+const int num_talon_drive_left_enc = 1;
+const int num_talon_drive_right_enc = 4;
 
-const int talon_shooter_connected_num = 9;
-const int talon_shooter_noconnected_num = 10;
+const int num_talon_shooter_connected = 9;
+const int num_talon_shooter_noconnected = 10;
 
-const int talon_elevator_num = 6;
-const int talon_winch_num = 8;
+const int num_talon_elevator = 6;
+const int num_talon_winch = 8;
 
-const int talon_intake_num = 7;
+const int num_talon_intake = 7;
 
-const int talon_hopper_num = 5;
+const int num_talon_hopper = 5;
 
 //Solenoid
 
-const int num_solenoid_intake_right_0 = 6;
-const int num_solenoid_intake_right_1 = 7;
+const int num_solenoid_intake_right_6 = 6;
+const int num_solenoid_intake_right_7 = 7;
 const int num_solenoid_intake_left_0 = 0;
 const int num_solenoid_intake_left_1 = 1;
 
