@@ -7,7 +7,7 @@
 class ToggleMotor {
    public:
      ToggleMotor (frc::Joystick *joystick, TalonSRX *talon) : joystick(joystick), talon(talon) {};
-     void Toggle(int toggle_motor_button);
+     void Toggle(int toggle_motor_button, TalonSRX * talon_toggle);
 
    private:
      bool motor_check = false;
