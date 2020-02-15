@@ -59,10 +59,10 @@ const int talon_hopper_num = 5;
 
 //Solenoid
 
-const int solenoid_intake_right_0 = 6;
-const int solenoid_intake_right_1 = 7;
-const int solenoid_intake_left_0 = 0;
-const int solenoid_intake_left_1 = 1;
+const int num_solenoid_intake_right_0 = 6;
+const int num_solenoid_intake_right_1 = 7;
+const int num_solenoid_intake_left_0 = 0;
+const int num_solenoid_intake_left_1 = 1;
 
 //
 

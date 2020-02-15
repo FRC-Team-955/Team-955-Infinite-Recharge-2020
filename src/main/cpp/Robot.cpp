@@ -28,11 +28,7 @@ Joystick *joystick;
 Version *print;
 Timer *timer;
 
-double left = 0;
-double right = 0;
-double lcalc = 0;
-double rcalc = 0;
-double multi = 0;
+double multi = 1;
 double x = 0;
 
 std::string storage = "";
@@ -72,10 +68,9 @@ void Robot::RobotInit() {
 
 	drivebase = new DriveBase(joystick, talon_drive_left_enc, talon_drive_right_enc);
 
-	toggle = new ToggleMotor(joystick, intake_talon);
+	toggle = new ToggleMotor(joystick);
 
-		intake = new Intake(toggle, intake_talon, solenoid_intake_right_6, solenoid_intake_right_7, solenoid_intake_left_0, solenoid_intake_left_1, joystick);
-
+	intake = new Intake(toggle, intake_talon, solenoid_intake_right_6, solenoid_intake_right_7, solenoid_intake_left_0, solenoid_intake_left_1, joystick);
 
 	std::cout<<filename<<" V"<<print->SaveVersionNumber()<<std::endl;
 }
@@ -91,7 +86,7 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-	drivebase->Drive(left, right, lcalc, rcalc, multi, x);
+	drivebase->Drive(multi, x);
 	intake->DeployIntakePNE();
 	intake->RunIntake(0.5);
 	print->AddToPipeDelimitedFile("Time", print->ToString(timer->Get()), storage_header, storage, false);
