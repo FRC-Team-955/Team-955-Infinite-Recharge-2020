@@ -5,16 +5,14 @@
 #include "ctre/Phoenix.h"
 
 class ToggleMotor {
-   public:
-     ToggleMotor (frc::Joystick *joystick, TalonSRX *talon) : joystick(joystick), talon(talon) {};
-     void Toggle(int toggle_motor_button, TalonSRX * talon_toggle);
+	public:
+		ToggleMotor (frc::Joystick *joystick) : joystick(joystick) {};
+		void Toggle(int toggle_motor_button, TalonSRX *talon_toggle, double power);
 
-   private:
-     bool motor_check = false;
-     bool button_check = false;
-     double power = 0.25;
-     frc::Joystick *joystick;
-     TalonSRX *talon;
-     
+	private:
+		frc::Joystick *joystick;
+
+		bool motor_check = false;
+		bool button_check = false;
 };
 #endif
