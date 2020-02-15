@@ -7,13 +7,13 @@ left, right, lcalc, rcalc, and x dont need to have a value set in robot.cpp, but
 */
 
 #include "drivebase.h"
-
+#include "settings.h"
 using namespace frc;
 
 void DriveBase::Drive(double left, double right, double lcalc, double rcalc, double &multi, double &x){
-  right = (joystick->GetRawAxis(1) + joystick->GetRawAxis(4));
-  left = (-1*joystick->GetRawAxis(1) - -1*joystick->GetRawAxis(4));
-  if (multi > 0 && joystick->GetRawButton(1) == true && x > 10){
+  right = (joystick->GetRawAxis(forward_back_drivebase_axis_idx) + joystick->GetRawAxis(left_right_drivebase_axis_idx));
+  left = (-1*joystick->GetRawAxis(forward_back_drivebase_axis_idx) - -1*joystick->GetRawAxis(left_right_drivebase_axis_idx));
+  if (multi > 0 && joystick->GetRawButton(sensitivity_scale_cont_button_idx) == true && x > 10){
     multi = multi / 3;        //the input is a decimal so it strts on slower mode and goes up to faster mode when divided by 3.... because of maths
     x = 0;
   } 
