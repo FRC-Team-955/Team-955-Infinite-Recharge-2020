@@ -3,5 +3,5 @@
 using namespace frc;
 
 void Hopper::Toggle() {
-    toggle_motor->Toggle(1);
+    toggle_motor->Toggle(1, talon_hopper_enc);
 }
