@@ -12,7 +12,7 @@ using namespace frc;
 
 class Shooter{
     public:
-    Shooter(TalonSRX * talon_shooter_left,TalonSRX * talon_shooter_right, frc::Joystick * joy): talon_shooter_left(talon_shooter_left), talon_shooter_right(talon_shooter_right), joy(joy){};
+    Shooter(TalonFX * talon_shooter_left,TalonFX * talon_shooter_right, frc::Joystick * joy): talon_shooter_left(talon_shooter_left), talon_shooter_right(talon_shooter_right), joy(joy){};
     void SpinMotorVelocity();
     void SpinMotorPercentOutput();
     void SpinMotorAxis();
@@ -21,7 +21,7 @@ class Shooter{
  
     TalonSRX * talon_shooter_left;
     TalonSRX * talon_shooter_right;
-   Joystick * joy;
+    Joystick * joy;
 };
 
 #endif
