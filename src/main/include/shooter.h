@@ -19,8 +19,8 @@ class Shooter{
     private:
     bool toggle_position_shooter = false;
  
-    TalonSRX * talon_shooter_left;
-    TalonSRX * talon_shooter_right;
+    TalonFX * talon_shooter_left;
+    TalonFX * talon_shooter_right;
     Joystick * joy;
 };
 
