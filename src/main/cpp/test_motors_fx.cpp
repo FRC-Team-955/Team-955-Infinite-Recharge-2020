@@ -11,7 +11,7 @@ void TestMotorsFX::RunMotor(float output_percentage, int button_forward, int but
     }
     else if (joystick -> GetRawButton(2))            //Press B to run backward
     {
-    	talon -> Set(ControlMode::PercentOutput, output_percentage); 
+    	talon -> Set(ControlMode::PercentOutput, -output_percentage); 
 	}
 	else           //Press Y to stop the motor (or, like... disable it)
 	{

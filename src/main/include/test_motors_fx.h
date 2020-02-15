@@ -9,7 +9,8 @@
 
 class TestMotorsFX {
 	public:
-		TestMotorsFX (TalonFX *talon, Joystick *joystick, Version *print, Timer *timer, string storage, string storage_header) : talon(talon), joystick(joystick), timer(timer), print(print), storage(storage), storage_header(storage_header) {};
+		TestMotorsFX (TalonFX *talon, frc::Joystick *joystick, Version *print, frc::Timer *timer, std::string storage, std::string storage_header)
+		 : talon(talon), joystick(joystick), timer(timer), print(print), storage(storage), storage_header(storage_header) {};
 		void RunMotor(float output_percentage, int button_forward, int button_backward, bool has_encoder);
 		void SaveVersionNum();		
 		void SaveData();
@@ -17,11 +18,11 @@ class TestMotorsFX {
 
 	private:
 		TalonFX *talon;
-		Joystick *joystick;
+		frc::Joystick *joystick;
 		Version *print;
-		Timer *timer;
-		string storage;
-		string storage_header;
+		frc::Timer *timer;
+		std::string storage;
+		std::string storage_header;
 };
 
 #endif
