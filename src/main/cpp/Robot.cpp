@@ -80,7 +80,7 @@ void Robot::RobotInit() {
 
 
 	drivebase = new DriveBase(joystick0, talon_drive_left_enc, talon_drive_right_enc);
-	intake = new Intake(toggle1, talon_intake, solenoid_intake_right_6, solenoid_intake_right_7, solenoid_intake_left_0, solenoid_intake_left_1, joystick1);
+	intake = new Intake(talon_intake, solenoid_intake_right_6, solenoid_intake_right_7, solenoid_intake_left_0, solenoid_intake_left_1, joystick1);
 	hopper = new Hopper(toggle1, talon_hopper);
 	elevator = new Elevator(talon_elevator, joystick1);
 	winch = new Winch(talon_winch, joystick1);

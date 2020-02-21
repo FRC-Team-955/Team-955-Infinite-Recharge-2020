@@ -7,7 +7,7 @@
 class FunctionToggle {
     public:
        FunctionToggle (frc::Joystick *joystick) : joystick(joystick) {};
-       bool ToggleFunction();
+       void ToggleFunction();
    
     private:
         frc::Joystick *joystick;

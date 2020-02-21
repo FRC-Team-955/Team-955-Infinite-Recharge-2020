@@ -2,7 +2,7 @@
 
 using namespace frc;
 
-double XYalign::test(){
+void XYalign::test(){
   std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
   degree = ahrs->GetAngle();
   double vertical_offset = table->GetNumber("ty", 0.0);

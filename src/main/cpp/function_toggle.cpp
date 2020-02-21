@@ -1,9 +1,9 @@
 #include "function_toggle.h"
 using namespace frc;
 
-bool FunctionToggle::ToggleFunction(){
+void FunctionToggle::ToggleFunction(){
     if (is_pressed && joystick->GetRawButton(3)) {  
-         is_pressed = false;
+        is_pressed = false;
     if (toggle) {  
         toggle = false;
     } else {
