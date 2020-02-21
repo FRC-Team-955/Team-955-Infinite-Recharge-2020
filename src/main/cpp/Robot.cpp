@@ -84,7 +84,7 @@ void Robot::RobotInit() {
 	hopper = new Hopper(toggle1, talon_hopper);
 	elevator = new Elevator(talon_elevator, joystick1);
 	winch = new Winch(talon_winch, joystick1);
-	shooter = new Shooter(talon_shooter_connected, talon_shooter_noconnected, joystick1);
+	shooter = new Shooter(talon_shooter_connected, talon_shooter_noconnected,talon_hopper, joystick1);
 
 	std::cout<<filename<<" V"<<print->SaveVersionNumber()<<std::endl;
 }
