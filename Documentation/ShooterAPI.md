@@ -69,7 +69,7 @@ To be run in TeleopPeriodic to toggle the shooter with the press of a button (Do
   <tr>
    <td><strong>Void Spin_Motor_Velocity()</strong>
 <p>
-Sets the Velocity to the target velocity and then it shoots it
+Sets the Velocity to the target velocity and then spins the hopper
 <p>
 Parameters:
 <p>
@@ -81,7 +81,7 @@ None
 <p>
 Usage:
 <p>
-Spin the motors to a certain velocity and then shoot it
+Spin the motors to a certain velocity and then spins the hopper
    </td>
   </tr>
 </table>
