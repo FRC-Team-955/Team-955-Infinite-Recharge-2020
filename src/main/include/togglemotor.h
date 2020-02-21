@@ -12,7 +12,7 @@ class ToggleMotor {
 	private:
 		frc::Joystick *joystick;
 
-		bool motor_check = false;
-		bool button_check = false;
+		bool is_pressed = false;
+		bool toggle = false;
 };
 #endif
