@@ -21,24 +21,28 @@ void Intake::DeployIntakePNE()
     pnu3->Set(1);
   }
   */
-    
-        if (joystick->GetRawButton(deploy_intake_button_idx) == false && button_check == true) {
-            button_check = false;
-        } else if (joystick->GetRawButton(deploy_intake_button_idx) == true && motor_check == false && button_check == false) {
-            solenoid_intake_right_0->Set(!solenoid_intake_right_0->Get());
-            solenoid_intake_right_1->Set(!solenoid_intake_right_1->Get());	
-            solenoid_intake_left_0->Set(!solenoid_intake_left_0->Get());
-            solenoid_intake_left_1->Set(!solenoid_intake_left_1->Get());            motor_check = true;
-            button_check = true;
+
+ 	if (is_pressed && joystick->GetRawButton(deploy_intake_button_idx)) {  
+        is_pressed = false;
+    if (toggle) {  
+        toggle = false;
+    } else {
+        toggle = true;
+    }
+    }else if(!joystick->GetRawButton(deploy_intake_button_idx) && !toggle) { 
+        is_pressed = true; 
+        solenoid_intake_right_0->Set(!solenoid_intake_right_0->Get());
+        solenoid_intake_right_1->Set(!solenoid_intake_right_1->Get());	
+        solenoid_intake_left_0->Set(!solenoid_intake_left_0->Get());
+        solenoid_intake_left_1->Set(!solenoid_intake_left_1->Get());                       
            
-        } else if (joystick->GetRawButton(deploy_intake_button_idx) == true && motor_check == true && button_check == false) {
-            solenoid_intake_right_0->Set(!solenoid_intake_right_0->Get());
-            solenoid_intake_right_1->Set(!solenoid_intake_right_1->Get());	
-            solenoid_intake_left_0->Set(!solenoid_intake_left_0->Get());
-            solenoid_intake_left_1->Set(!solenoid_intake_left_1->Get());            motor_check = false;
-            button_check = true;
-           
-        }
+    }else if(!joystick->GetRawButton(deploy_intake_button_idx) && toggle){
+        is_pressed = true; 
+        solenoid_intake_right_0->Set(!solenoid_intake_right_0->Get());
+        solenoid_intake_right_1->Set(!solenoid_intake_right_1->Get());	
+        solenoid_intake_left_0->Set(!solenoid_intake_left_0->Get());
+        solenoid_intake_left_1->Set(!solenoid_intake_left_1->Get());
+    }
         
 }
 
