@@ -11,8 +11,8 @@ class Intake {
 
 		bool deploy_state = 0;
 		void DeployIntakePNE();
-		bool button_check = 0;
-		bool motor_check = 0;
+		bool is_pressed = 0;
+		bool toggle = 0;
 		void RunIntake(float output_percentage);
 	
 	
