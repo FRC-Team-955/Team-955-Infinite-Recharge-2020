@@ -27,7 +27,7 @@ class XYalign{
             double left_drive;
             double right_drive;
             bool Align;
-            double test();
+            void test();
     private:
         TalonSRX *talon_drive_right_enc;
         TalonSRX *talon_drive_right_noenc;
