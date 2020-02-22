@@ -11,14 +11,17 @@
 class Elevate{
     public:
     Elevate(TalonSRX * talon_elevator_enc,
-        Joystick * joystick
+        Joystick * joystick, int target_pos
         ): 
         talon_elevator_enc(talon_elevator_enc),
-        joystick(joystick){};
+        joystick(joystick),target_pos(target_pos){};
     double left_drive;
     double right_drive;
     bool Align;
     void elevator();
+    int position();
+    void MSsketch();
+    int target_pos;
     private:
     Joystick *joystick;
     TalonSRX * talon_elevator_enc;

@@ -12,16 +12,19 @@ using namespace frc;
 
 class Shooter{
     public:
-    Shooter(TalonFX * talon_shooter_left,TalonFX * talon_shooter_right, frc::Joystick * joy): talon_shooter_left(talon_shooter_left), talon_shooter_right(talon_shooter_right), joy(joy){};
-    void SpinMotorVelocity();
+    Shooter(TalonFX * talon_shooter_connected, TalonFX * talon_shooter_noconnected,TalonSRX *talon_hopper, frc::Joystick * joystick1):  talon_shooter_connected(talon_shooter_connected),talon_shooter_noconnected(talon_shooter_noconnected),talon_hopper(talon_hopper), joystick1(joystick1){};
+    void SpinMotorVelocity(  double target_velocity);
     void SpinMotorPercentOutput();
     void SpinMotorAxis();
+
+    double target_velocity;
     private:
+
     bool toggle_position_shooter = false;
- 
-    TalonFX * talon_shooter_left;
-    TalonFX * talon_shooter_right;
-    Joystick * joy;
+    TalonFX * talon_shooter_connected;
+    TalonFX * talon_shooter_noconnected;
+    TalonSRX * talon_hopper;
+    Joystick * joystick1;
 };
 
 #endif
