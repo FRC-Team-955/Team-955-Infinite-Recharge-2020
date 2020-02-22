@@ -69,11 +69,11 @@ To be run in TeleopPeriodic to toggle the shooter with the press of a button (Do
   <tr>
    <td><strong>Void Spin_Motor_Velocity()</strong>
 <p>
-Sets the Velocity to 500
+Sets the Velocity to the target velocity and then spins the hopper
 <p>
 Parameters:
 <p>
-None
+target_velocity
 <p>
 Returns:
 <p>
@@ -81,7 +81,7 @@ None
 <p>
 Usage:
 <p>
-DO NOT USE FOR SCRIMMAGE (IS NOT FUNCTIONAL)
+Spin the motors to a certain velocity and then spins the hopper
    </td>
   </tr>
 </table>
