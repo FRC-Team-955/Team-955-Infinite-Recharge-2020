@@ -8,32 +8,34 @@ left, right, lcalc, rcalc, and x dont need to have a value set in robot.cpp, but
 
 #include "drivebase.h"
 #include "settings.h"
+
+
 using namespace frc;
 
-void DriveBase::Drive(double &multi, double &x){
-	right = (joystick->GetRawAxis(forward_back_drivebase_axis_idx) + joystick->GetRawAxis(left_right_drivebase_axis_idx));
-	left = (-1*joystick->GetRawAxis(forward_back_drivebase_axis_idx) - -1*joystick->GetRawAxis(left_right_drivebase_axis_idx));
-	if (multi > 0 && joystick->GetRawButton(sensitivity_scale_cont_button_idx) == true && x > 10){
-		multi = multi / 3;        //the input is a decimal so it strts on slower mode and goes up to faster mode when divided by 3.... because of maths
-		x = 0;
+
+void DriveBase::Drive(double multi){
+	right = (joy->GetRawAxis(forward_back_drivebase_axis_idx) + -joy->GetRawAxis(left_right_drivebase_axis_idx));
+	left = (-joy->GetRawAxis(forward_back_drivebase_axis_idx) + -joy->GetRawAxis(left_right_drivebase_axis_idx));
+	if (joy->GetRawButton(variable_speed_button_idx) == false && button_check == true){
+		button_check = false;
+	} else if (joy->GetRawButton(variable_speed_button_idx) == true && multi_check == true && button_check == false){
+		multi_check = false;
+		button_check = true;
+	} else if (joy->GetRawButton(variable_speed_button_idx) == true && multi_check == false && button_check == false){
+		multi_check = true; 
+		button_check = true;
 	} 
-	else {
-		x += 1;
-	} 
-	if (multi < 0.125){
-		multi = 1;
-	}
-	right = right / multi;
-	left = left / multi;
+	right = right * right * right;
+	left = left * left * left;
 	left = std::min(1.0, left);
 	right = std::min(1.0, right);
 	left = std::max(-1.0, left);
 	right = std::max(-1.0, right);
-	rcalc = right;
-	lcalc = left;
-	lcalc = lcalc * 0.75;
-	rcalc = rcalc * 0.75;
-	talon_drivebase_left_connected->Set(ControlMode::PercentOutput, lcalc);
-	talon_drivebase_right_connected->Set(ControlMode::PercentOutput, rcalc);
+	if (multi_check == true){
+		left = left * multi;
+		right = right * multi;
+  	}
+	talon_drive_right_noenc->Set(ControlMode::PercentOutput, -1 * left);
+	talon_drive_left_noenc->Set(ControlMode::PercentOutput, right * 1);
 	std::cout<<multi<<"  "<<right<<"  "<<left<<"  "<<std::endl;
 }
