@@ -32,6 +32,7 @@ class Auto {
 		void ZeroEnc(int &mode);
 		void Pause(int &mode);
 		void Path();
+		void MoveOffLine();
 
 		int target_distance_change = 0;
 		int percent_change = 0;
@@ -46,13 +47,16 @@ class Auto {
 		TalonSRX *drive_talon_left;
 		AHRS *navx;
 
-		bool know_gear_ratio = false;
+		bool know_gear_ratio = true;
 		int gear_ratio = 6;
 		int full_rotation_enc = 1040;
-		const int wheel_diameter = 4;
-		const int max_velocity = 368;
+		const int wheel_diameter = 7.5;
+		const int max_turning_velocity = 150;
+		const int max_velocity = 230;
 		const int right_forward_direction = -1; // 1 or -1
-		const int left_forward_direction = 1; // 1 or -1
+		const int left_forward_direction = -1; // 1 or -1
+		int max_right_turning_velocity = right_forward_direction * max_turning_velocity;
+		int max_left_turning_velocity = left_forward_direction * max_turning_velocity;
 		int max_right_velocity = right_forward_direction * max_velocity;
 		int max_left_velocity = left_forward_direction * max_velocity;
 

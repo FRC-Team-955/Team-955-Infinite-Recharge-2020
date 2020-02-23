@@ -12,12 +12,6 @@ void Auto::MoveStraight(int distance_inches, int &mode){
 	int right_pos = drive_talon_right->GetSelectedSensorPosition(0);
 	int left_pos = drive_talon_left->GetSelectedSensorPosition(0);
 
-	if (loop == 1){
-		right_pos = 0;
-		left_pos = 0;
-		loop++;
-	}
-
 	abs_target_distance_change = abs(target_distance_change);
 	average_abs_positions = (abs(right_pos) + abs(left_pos))/ 2;
 
@@ -40,8 +34,8 @@ void Auto::MoveStraight(int distance_inches, int &mode){
 void Auto::Turn(int degrees, int &mode){
 	int current_degrees = navx->GetYaw();
 	bool turn_left = degrees < current_degrees;
-	right_velocity = RampSpeed(max_right_velocity, abs(current_degrees - degrees));
-	left_velocity = RampSpeed(max_left_velocity, abs(current_degrees - degrees)) * -1;
+	right_velocity = RampSpeed(max_right_turning_velocity, abs(current_degrees - degrees));
+	left_velocity = RampSpeed(max_left_turning_velocity, abs(current_degrees - degrees)) * -1;
 
 	if (right_velocity == 0 && left_velocity == 0) mode++;
 
@@ -55,14 +49,16 @@ void Auto::Turn(int degrees, int &mode){
 }
 
 int Auto::RampSpeed(int velocity, int difference){
-	if (difference > 20) return velocity;
-	if (difference > 10) return velocity / 2;
-	if (difference > 5) return velocity / 4;
+	if (difference > 30) return velocity;
+	if (difference > 20) return velocity / 6;
+	if (difference > 6) return velocity / 8;
 	return 0;
 }
 
 int Auto::StraightRamp(int velocity, int percent_change){
-	if (percent_change > 100) return velocity / 2;
+	if (percent_change >= 90) return velocity / 5;
+	if (percent_change >= 80) return velocity / 4;
+	if (percent_change > 75) return velocity / 3;
 	if (percent_change > 50) return velocity / 2;
 	if (percent_change > 10) return velocity / 4;
 	return 0;
@@ -76,7 +72,8 @@ void Auto::InitializeNavX(int &mode){
 void Auto::ZeroEnc(int &mode){
 	drive_talon_right->SetSelectedSensorPosition(0, 0, 10);
 	drive_talon_left->SetSelectedSensorPosition(0, 0, 10);
-	mode++;
+	Stop();
+	if (drive_talon_right->GetSelectedSensorPosition(0) == 0 && drive_talon_left->GetSelectedSensorPosition(0) == 0) mode++;
 }
 
 void Auto::Stop(){
@@ -89,17 +86,47 @@ void Auto::Pause(int &mode){
 	mode++;
 }
 
-void Auto::Path(){
+/*void Auto::Path(){
 	if (mode == 1) InitializeNavX(mode);
-	if (mode == 2) Turn(90, mode);
-	if (mode == 3) Pause(mode);
-	if (mode == 4) Pause(mode);
-	if (mode == 5) Pause(mode);
-	if (mode == 6) {
-		ZeroEnc(mode);
-		loop = 1;
-	}
-	if (mode == 7) MoveStraight(24, mode);
+	if (mode == 2) Turn(135, mode);
+	if (mode == 3) ZeroEnc(mode);
+	if (mode == 4) MoveStraight(18, mode);
+	if (mode == 5) ZeroEnc(mode);
+	if (mode == 6) Turn (180, mode);
+	if (mode == 7) ZeroEnc(mode);
+	if (mode == 8) MoveStraight(168, mode);
 	if (mode == 9) Stop();
 	std::cout<<"Mode: "<<mode<<std::endl;
+}*/
+
+void Auto::Path(){
+	if (mode == 1) InitializeNavX(mode);
+	if (mode == 2) Turn(135, mode);
+	if (mode == 3) ZeroEnc(mode);
+	if (mode == 4) MoveStraight(18, mode);
+	if (mode == 5) ZeroEnc(mode);
+	if (mode == 6) Turn (180, mode);
+	if (mode == 7) ZeroEnc(mode);
+	if (mode == 8) MoveStraight(160, mode);
+	if (mode == 9) InitializeNavX(mode);
+	if (mode == 10) Turn(-5, mode);
+	if (mode == 11) ZeroEnc(mode);
+	if (mode == 12) MoveStraight(10, mode);
+	if (mode == 13) ZeroEnc(mode);
+	if (mode == 14) MoveStraight(-10, mode);
+	if (mode == 15) ZeroEnc(mode);
+	if (mode == 16) Turn(5, mode);
+	if (mode == 17) ZeroEnc(mode);
+	if (mode == 18) MoveStraight(10, mode);
+	if (mode == 19) ZeroEnc(mode);
+	if (mode == 20) MoveStraight(-10, mode);
+	if (mode == 21) ZeroEnc(mode);
+	if (mode == 22) Stop();
+	std::cout<<"Mode: "<<mode<<std::endl;
+}
+
+void Auto::MoveOffLine(){
+	if (mode == 1) ZeroEnc(mode);
+	if (mode == 2) MoveStraight(-36, mode);
+	if (mode == 3) Stop();
 }
