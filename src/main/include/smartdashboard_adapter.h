@@ -9,13 +9,12 @@
 #include "version.h"
 #include <string>
 
-class SmartDashboard_Adapter{
+class SmartDashboardAdapter{
     public:
 
-    SmartDashboard_Adapter(){};  
-    void  Get_Slider(int id_slider);
-    void  Get_Button(int id_button);
-    //void  Get_String (int id_string);
+    SmartDashboardAdapter(){};  
+    int GetSlider(int id_slider);
+    bool GetButton(int id_button);
     std::string  ChooseAuto();
 
     private:
