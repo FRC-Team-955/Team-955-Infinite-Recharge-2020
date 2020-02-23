@@ -12,3 +12,14 @@ void Elevate::elevator(){
   }
 
 }
+
+int Elevate::position(){
+
+  return talon_elevator_enc -> GetSelectedSensorPosition();
+
+}
+
+void Elevate::MSsketch(){
+  
+    talon_elevator_enc -> Set(ControlMode::Position, target_pos);
+} 

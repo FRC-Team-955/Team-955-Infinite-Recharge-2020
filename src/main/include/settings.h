@@ -9,6 +9,8 @@ const int joy_0_idx = 0;
 const int align_button_idx = 6; //skip right bumper
 const int set_target_button_idx =5; //skip left bumper
 
+const int variable_speed_button_idx  =3;
+
 const int forward_back_drivebase_axis_idx = 1; //axis 1
 const int left_right_drivebase_axis_idx = 4; //axis 4
 const int sensitivity_scale_cont_button_idx = 4; 

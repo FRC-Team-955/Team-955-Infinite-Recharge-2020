@@ -24,31 +24,31 @@ void Intake::DeployIntakePNE()
 
  	if (is_pressed && joystick->GetRawButton(deploy_intake_button_idx)) {  
         is_pressed = false;
-    if (toggle) {  
-        toggle = false;
-    } else {
-        toggle = true;
-    }
+    	if (toggle) {  
+        	toggle = false;
+    	} else {
+        	toggle = true;
+    	}
     }else if(!joystick->GetRawButton(deploy_intake_button_idx) && !toggle) { 
         is_pressed = true; 
-        solenoid_intake_right_0->Set(!solenoid_intake_right_0->Get());
-        solenoid_intake_right_1->Set(!solenoid_intake_right_1->Get());	
-        solenoid_intake_left_0->Set(!solenoid_intake_left_0->Get());
-        solenoid_intake_left_1->Set(!solenoid_intake_left_1->Get());                       
+        solenoid_intake_right_0->Set(0);
+        solenoid_intake_right_1->Set(1);	
+        solenoid_intake_left_0->Set(1);
+        solenoid_intake_left_1->Set(0);                       
            
     }else if(!joystick->GetRawButton(deploy_intake_button_idx) && toggle){
         is_pressed = true; 
-        solenoid_intake_right_0->Set(!solenoid_intake_right_0->Get());
-        solenoid_intake_right_1->Set(!solenoid_intake_right_1->Get());	
-        solenoid_intake_left_0->Set(!solenoid_intake_left_0->Get());
-        solenoid_intake_left_1->Set(!solenoid_intake_left_1->Get());
+        solenoid_intake_right_0->Set(1);
+        solenoid_intake_right_1->Set(0);	
+        solenoid_intake_left_0->Set(0);
+        solenoid_intake_left_1->Set(1);
     }
         
 }
 
 void Intake::RunIntake(float output_percentage)
 {
-    intake_talon -> Set(ControlMode::PercentOutput, joystick -> GetRawButton(run_intake_button_idx));
+    intake_talon -> Set(ControlMode::PercentOutput, -(joystick -> GetRawButton(run_intake_button_idx)));
 } 
 
 
