@@ -2,7 +2,7 @@
 #include "settings.h"
 using namespace frc;
 void Elevate::elevator(){
-  int y_axis = joystick->GetRawAxis(0);
+  double y_axis = joystick->GetRawAxis(0);
   if(y_axis > 0){
   talon_elevator_enc->Set(ControlMode::PercentOutput,y_axis/3);
   } else if (y_axis < 0){
