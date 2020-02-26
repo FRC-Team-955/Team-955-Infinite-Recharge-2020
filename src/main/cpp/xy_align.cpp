@@ -54,8 +54,8 @@ void XYalign::test(){
   std::cout<< "Right: "<<right_drive<<std::endl;
   std::cout<< "Left: "<<left_drive<<std::endl;
   if(joy0->GetRawButton(3)==1){
-    talon_drive_right_enc->Set(ControlMode::PercentOutput, (.15 * drive_adjustment - right_drive));
-    talon_drive_left_enc->Set(ControlMode::PercentOutput, (-.15 * drive_adjustment - left_drive));
+    talon_drive_right_enc->Set(ControlMode::PercentOutput, (.15 * - right_drive));
+    talon_drive_left_enc->Set(ControlMode::PercentOutput, (-.15 * - left_drive));
   }
   std::cout<<drive_adjustment<<std::endl;
   std::cout<<"Target: "<<target_set<<std::endl;
