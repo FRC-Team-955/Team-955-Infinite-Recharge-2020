@@ -7,7 +7,7 @@ int Auto::CalculateEncoderCounts(int length_inches){
 	return length_inches * (1 / (wheel_diameter * PIE)) * full_rotation_enc;
 }
 
-void Auto::MoveStraight(int distance_inches, int max_right_velocity, int max_left_velocity, int &mode, bool ramp){
+void Auto::MoveStraight(int distance_inches, int max_right_velocity, int max_left_velocity, int &mode){
 	target_distance_change = CalculateEncoderCounts(distance_inches);
 	int right_pos = drive_talon_right->GetSelectedSensorPosition(0);
 	int left_pos = drive_talon_left->GetSelectedSensorPosition(0);
@@ -32,12 +32,12 @@ void Auto::MoveStraight(int distance_inches, int max_right_velocity, int max_lef
 }
 
 void Auto::PickUpBalls(int distance_inches, int &mode){
-	MoveStraight(distance_inches, max_balls_right_velocity, max_balls_left_velocity,mode, true);
+	MoveStraight(distance_inches, max_balls_right_velocity, max_balls_left_velocity,mode);
 	IntakeOn();
 }
 
 void Auto::Move(int distance_inches, int &mode){
-	MoveStraight(distance_inches, no_pickup_max_right_velocity, no_pickup_max_left_velocity, mode, false);
+	MoveStraight(distance_inches, no_pickup_max_right_velocity, no_pickup_max_left_velocity, mode);
 	IntakeOff();
 }
 
