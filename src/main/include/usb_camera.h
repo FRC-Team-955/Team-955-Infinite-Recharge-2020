@@ -1,10 +1,8 @@
 #ifndef USBCAMERA
 #define USBCAMERA
 
-#include <frc/WPILib.h>
+#include <cameraserver/CameraServer.h>
 #include <iostream>
-
-using namespace frc;
 
 class UsbCamera{
     public:

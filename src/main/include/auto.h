@@ -2,7 +2,6 @@
 #define AUTO
 
 #include <iostream>
-#include "frc/WPILib.h"
 #include "ctre/Phoenix.h"
 #include <frc/Joystick.h>
 

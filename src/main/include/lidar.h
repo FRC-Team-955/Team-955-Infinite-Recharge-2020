@@ -2,7 +2,7 @@
 #define LIDAR
 
 #include <iostream>
-#include "frc/WPILib.h"
+#include <frc/Counter.h>
 #include "ctre/Phoenix.h"
 #include <string>
 #include <cmath>

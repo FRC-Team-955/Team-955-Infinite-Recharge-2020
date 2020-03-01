@@ -1,6 +1,7 @@
 #ifndef ELEVATOR_AXIS
 #define ELEVATOR_AXIS
-#include "frc/WPILib.h"
+
+#include <frc/Joystick.h>
 #include <iostream>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <AHRS.h>

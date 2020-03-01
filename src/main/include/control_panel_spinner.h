@@ -2,14 +2,14 @@
 #define CONTROLPANNELSPINNER
 
 #include <iostream>
-#include "frc/WPILib.h"
+#include <frc/Solenoid.h>
 #include "ctre/Phoenix.h"
 #include "color_sensor.h"
 #include <string>
 #include <cmath>
 
 using namespace frc;
-//using namespace rev;
+
 class ControlPanelSpinner {
    public:
        ControlPanelSpinner (TalonSRX *talon_wheelspinner_enc, Solenoid *arm_solenoid_up, Solenoid *arm_solenoid_down) : 

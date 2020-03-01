@@ -1,7 +1,7 @@
 #ifndef TOGGLEMOTOR
 #define TOGGLEMOTOR
 #include <iostream>
-#include "frc/WPILib.h"
+#include <frc/Joystick.h>
 #include "ctre/Phoenix.h"
 
 class ToggleMotor {

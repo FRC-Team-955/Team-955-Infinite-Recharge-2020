@@ -1,7 +1,7 @@
 #ifndef XYALIGH
 #define XYALIGH
 
-#include "frc/WPILib.h"
+#include <frc/Joystick.h>
 #include <iostream>
 #include <AHRS.h>
 #include <ctre/Phoenix.h>

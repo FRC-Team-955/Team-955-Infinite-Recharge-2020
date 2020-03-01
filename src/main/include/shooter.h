@@ -1,7 +1,9 @@
 #ifndef SHOOTER
 #define SHOOTER
 #include <string>
-#include <frc/WPILib.h>
+//#include <frc/WPILib.h>
+#include <frc/Joystick.h>
+
 #include <ctre/Phoenix.h>
 #include <iostream>
 #include <frc/TimedRobot.h>

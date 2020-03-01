@@ -2,7 +2,8 @@
 #define INTAKE
 
 #include <ctre/Phoenix.h>
-#include "frc/WPILib.h"
+#include <frc/Joystick.h>
+#include <frc/Solenoid.h>
 
 class Intake {
 	public:

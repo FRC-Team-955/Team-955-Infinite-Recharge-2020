@@ -1,7 +1,10 @@
 #ifndef COMPRESSERCLASS
 #define COMPRESSERCLASS
 
-#include "frc/WPILib.h"
+#include <frc/Compressor.h>
+#include <frc/DriverStation.h>
+
+
 #include <iostream>
 
 
