@@ -43,7 +43,7 @@ joystick1 is the instance of a Joystick
   <tr>
    <td><strong>void Spin_Motor_Axis()</strong>
 <p>
-Spins the motor depending how much you presses the right trigger
+To be run in TeleopPeriodic
 <p>
 Parameters:
 <p>
@@ -55,13 +55,13 @@ None
 <p>
 Usage:
 <p>
-To be run in TeleopPeriodic to spin the motor with the control of an axis (Use Follower for the other motor and Don't use)
+ to spin the motor with the control of an axis (Use Follower for the other motor and Don't use)
    </td>
   </tr>
   <tr>
    <td><strong>void Spin_Motor_PercentOutput()</strong>
 <p>
-Toggles the shooter
+To be run in TeleopPeriodic 
 <p>
 Parameters:
 <p>
@@ -73,7 +73,7 @@ None
 <p>
 Usage:
 <p>
-To be run in TeleopPeriodic to toggle the shooter with the press of a button (Don’t use)
+Toggles the shooter with the press of a button (Don’t use)
    </td>
   </tr>
   <tr>
