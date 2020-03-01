@@ -1,8 +1,26 @@
 #include "elevator.h"
-
+#include "settings.h"
 using namespace frc;
+void Elevate::elevator(){
+  double y_axis = joystick->GetRawAxis(0);
+  if(y_axis > 0.2){
+  talon_elevator_enc->Set(ControlMode::PercentOutput,0.7);
+  } else if (y_axis < -0.2){
+    talon_elevator_enc -> Set(ControlMode::PercentOutput,-0.6);
+  } else {
+    talon_elevator_enc -> Set(ControlMode::PercentOutput,0);
+  }
 
-void Elevator::Elevate(){
-  yp = joystick->GetRawAxis(1);
-  talon_drive_right_enc->Set(ControlMode::PercentOutput,yp);
 }
+
+int Elevate::position(){
+
+  return talon_elevator_enc -> GetSelectedSensorPosition();
+
+}
+
+void Elevate::MSsketch(){
+  
+    talon_elevator_enc -> Set(ControlMode::Position, target_pos);
+} 
+
