@@ -45,7 +45,7 @@ None
 <p>
 Usage:
 <p>
-To be run in TeleopPeriodic to spin the motor with the control of an axis (Use Follower for the other motor)
+To be run in TeleopPeriodic to spin the motor with the control of an axis (Use Follower for the other motor and Don't use)
    </td>
   </tr>
   <tr>
@@ -69,7 +69,7 @@ To be run in TeleopPeriodic to toggle the shooter with the press of a button (Do
   <tr>
    <td><strong>Void Spin_Motor_Velocity()</strong>
 <p>
-Sets the Velocity to the target velocity and then spins the hopper
+Use in TeleopPeriodic
 <p>
 Parameters:
 <p>
@@ -81,7 +81,7 @@ None
 <p>
 Usage:
 <p>
-Spin the motors to a certain velocity and then spins the hopper
+Spin the motors to a certain velocity and then spins the hopper (Use Follower for the second motor)
    </td>
   </tr>
 </table>
