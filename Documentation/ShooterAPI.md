@@ -25,9 +25,19 @@ Shooter API Documentation
 
 <table>
   <tr>
-   <td>Shooter()
+   <td>Shooter(TalonFX * talon_shooter_connected, TalonFX * talon_shooter_noconnected,TalonSRX *talon_hopper, frc::Joystick * joystick1)
 <p>
-Constructs an instance of Class
+Constructs an instance of Shooter Class
+<p>
+Parameters:
+<p>
+talon_shooter_connected is the talon directly connected to the shooter
+<p>
+talon_shooter_noconnected is the talon connected by chain to the shooter
+<p>
+talon_hopper is the talon that controls the hopper
+<p>
+joystick1 is the instance of a Joystick
    </td>
   </tr>
   <tr>
