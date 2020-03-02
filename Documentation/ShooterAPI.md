@@ -77,7 +77,7 @@ Toggles the shooter with the press of a button (Don’t use)
    </td>
   </tr>
   <tr>
-   <td><strong>Void Spin_Motor_Velocity()</strong>
+   <td><strong>bool Spin_Motor_Velocity()</strong>
 <p>
 Use in TeleopPeriodic
 <p>
@@ -87,7 +87,7 @@ target_velocity
 <p>
 Returns:
 <p>
-None
+If the shooter is spinning4
 <p>
 Usage:
 <p>
