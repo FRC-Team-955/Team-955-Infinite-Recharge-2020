@@ -3,6 +3,7 @@
 
 #include <ctre/Phoenix.h>
 #include <frc/Joystick.h>
+#include <frc/DriverStation.h>
 
 #include "version.h"
 

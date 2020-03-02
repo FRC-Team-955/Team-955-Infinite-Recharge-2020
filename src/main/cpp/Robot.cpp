@@ -21,6 +21,7 @@
 #include "elevator.h"
 #include "winch.h"
 #include "shooter.h"
+#include "pid.h"
 
 using namespace frc;
 
@@ -40,7 +41,7 @@ Hopper *hopper;
 Winch *winch;
 Shooter *shooter;
 
-PID *pid;
+Pid *pid;
 
 double multi = 1;
 
@@ -63,7 +64,7 @@ void Robot::RobotInit() {
 	talon_drive_left_noenc->Set(ControlMode::Follower, num_talon_drive_left_enc);
 	talon_drive_right_noenc->Set(ControlMode::Follower, num_talon_drive_right_enc);
 	talon_drive_left_enc->SetSensorPhase(1);
-	pid = new PID();
+	pid = new Pid();
 
 	pid->PIDTune(talon_drive_left_enc, 4.2, 0.01, 0, 2.27);
 	pid->PIDTune(talon_drive_right_enc, 4.2, 0.01, 0, 2.34);
@@ -92,7 +93,7 @@ void Robot::RobotInit() {
 	winch = new Winch(talon_winch, joystick1);
 	shooter = new Shooter(talon_shooter_connected, talon_shooter_noconnected,talon_hopper, joystick1);
 
-	pid->PIDTune(talon_elevator, 1, 0, 0);
+	pid->PIDTune(talon_elevator, 1, 0, 0, 0);
 
 	std::cout<<filename<<" V"<<print->SaveVersionNumber()<<std::endl;
 }
