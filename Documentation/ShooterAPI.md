@@ -87,7 +87,7 @@ target_velocity
 <p>
 Returns:
 <p>
-If the shooter is spinning4
+If the shooter is spinning
 <p>
 Usage:
 <p>
