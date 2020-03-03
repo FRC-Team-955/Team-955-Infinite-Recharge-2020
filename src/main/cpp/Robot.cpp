@@ -47,7 +47,7 @@ double multi = 1;
 
 std::string storage = "";
 std::string storage_header = "";
-std::string filename = "ScrimmageCode";
+std::string filename = "UnifiedCode";
 
 
 void Robot::RobotInit() {
@@ -87,7 +87,7 @@ void Robot::RobotInit() {
 
 
 	drivebase = new DriveBase(joystick0, talon_drive_left_enc, talon_drive_right_enc);
-	intake = new Intake(talon_intake, solenoid_intake_right_6, solenoid_intake_right_7, solenoid_intake_left_0, solenoid_intake_left_1, joystick1);
+	intake = new Intake(talon_intake, solenoid_intake_right_6, solenoid_intake_right_7, solenoid_intake_left_0, solenoid_intake_left_1, joystick0);
 	hopper = new Hopper(toggle1, talon_hopper);
 	elevator = new Elevator(talon_elevator, joystick1, -10000);
 	winch = new Winch(talon_winch, joystick1);
@@ -112,10 +112,9 @@ void Robot::TeleopPeriodic() {
 	drivebase->Drive(multi);
 	intake->DeployIntakePNE();
 	intake->RunIntake(-0.5);
-	hopper->Toggle();
 	elevator->Elevate();
 	winch->RaiseWinchAxis();
-	shooter->SpinMotorAxis();
+	shooter->SpinMotorVelocity(-17500);
 
 	StandardDataCollection();
 	

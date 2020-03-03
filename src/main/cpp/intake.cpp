@@ -48,7 +48,7 @@ void Intake::DeployIntakePNE()
 
 void Intake::RunIntake(float output_percentage)
 {
-    intake_talon -> Set(ControlMode::PercentOutput, -(joystick -> GetRawButton(run_intake_button_idx)));
+    intake_talon -> Set(ControlMode::PercentOutput, -(joystick -> GetRawAxis(run_intake_button_idx)));
 } 
 
 
