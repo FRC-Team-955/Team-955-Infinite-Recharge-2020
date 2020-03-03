@@ -15,7 +15,7 @@ using namespace frc;
 
 void DriveBase::Drive(double multi){
 	right = (joy->GetRawAxis(forward_back_drivebase_axis_idx) + joy->GetRawAxis(left_right_drivebase_axis_idx));
-	left = (-joy->GetRawAxis(forward_back_drivebase_axis_idx) + joy->GetRawAxis(left_right_drivebase_axis_idx));
+	left = (-joy->GetRawAxis(forward_back_drivebase_axis_idx) + -joy->GetRawAxis(left_right_drivebase_axis_idx));
 	if (joy->GetRawButton(variable_speed_button_idx) == false && button_check == true){
 		button_check = false;
 	} else if (joy->GetRawButton(variable_speed_button_idx) == true && multi_check == true && button_check == false){
@@ -37,5 +37,5 @@ void DriveBase::Drive(double multi){
   	}
 	talon_drive_right_noenc->Set(ControlMode::PercentOutput, -1 * left);
 	talon_drive_left_noenc->Set(ControlMode::PercentOutput, right * 1);
-	std::cout<<multi<<"  "<<right<<"  "<<left<<"  "<<std::endl;
 }
+
