@@ -1,7 +1,6 @@
 #ifndef SMARTDASHBOARDADAPTER
 #define SMARTDASHBOARDADAPTER
 
-#include <frc/WPILib.h>
 #include <ctre/Phoenix.h>
 #include <iostream>
 #include <frc/smartdashboard/SmartDashboard.h>

@@ -4,7 +4,8 @@
 #include "Robot.h"
 #include "ctre/Phoenix.h"
 #include <iostream>
-#include "frc/WPILib.h"
+#include <frc/Joystick.h>
+
 
 class Limelight {
     public:

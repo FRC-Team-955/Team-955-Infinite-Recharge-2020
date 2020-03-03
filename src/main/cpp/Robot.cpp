@@ -12,6 +12,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include "ctre/Phoenix.h"
 #include <frc/Joystick.h>
+#include <frc/DriverStation.h>
 #include "version.h"
 #include "drivebase.h"
 #include "settings.h"
@@ -20,6 +21,7 @@
 #include "elevator.h"
 #include "winch.h"
 #include "shooter.h"
+#include "pid.h"
 
 using namespace frc;
 
@@ -35,12 +37,13 @@ Timer *timer;
 Intake *intake;
 DriveBase *drivebase;
 Hopper *hopper;
-Elevator *elevator;
+//Elevate *elevator;
 Winch *winch;
 Shooter *shooter;
 
+Pid *pid;
+
 double multi = 1;
-double x = 0;
 
 std::string storage = "";
 std::string storage_header = "";
@@ -60,7 +63,11 @@ void Robot::RobotInit() {
 	talon_drive_left_noenc->SetInverted(1);
 	talon_drive_left_noenc->Set(ControlMode::Follower, num_talon_drive_left_enc);
 	talon_drive_right_noenc->Set(ControlMode::Follower, num_talon_drive_right_enc);
+	talon_drive_left_enc->SetSensorPhase(1);
+	pid = new Pid();
 
+	pid->PIDTune(talon_drive_left_enc, 4.2, 0.01, 0, 2.27);
+	pid->PIDTune(talon_drive_right_enc, 4.2, 0.01, 0, 2.34);
 
 	talon_shooter_connected = new TalonFX(num_talon_shooter_connected);
 	talon_shooter_noconnected = new TalonFX(num_talon_shooter_noconnected);
@@ -82,9 +89,11 @@ void Robot::RobotInit() {
 	drivebase = new DriveBase(joystick0, talon_drive_left_enc, talon_drive_right_enc);
 	intake = new Intake(talon_intake, solenoid_intake_right_6, solenoid_intake_right_7, solenoid_intake_left_0, solenoid_intake_left_1, joystick1);
 	hopper = new Hopper(toggle1, talon_hopper);
-	elevator = new Elevator(talon_elevator, joystick1);
+	//elevator = new Elevate(talon_elevator, joystick1);
 	winch = new Winch(talon_winch, joystick1);
 	shooter = new Shooter(talon_shooter_connected, talon_shooter_noconnected,talon_hopper, joystick1);
+
+	pid->PIDTune(talon_elevator, 1, 0, 0, 0);
 
 	std::cout<<filename<<" V"<<print->SaveVersionNumber()<<std::endl;
 }
@@ -100,14 +109,20 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-	drivebase->Drive(multi, x);
+	drivebase->Drive(multi);
 	intake->DeployIntakePNE();
 	intake->RunIntake(-0.5);
 	hopper->Toggle();
-	elevator->Elevate();
+	//elevator->Elevate();
 	winch->RaiseWinchAxis();
 	shooter->SpinMotorAxis();
 
+	StandardDataCollection();
+	
+	print->EndLoop(storage);
+}
+
+void Robot::StandardDataCollection(){
 	print->AddToPipeDelimitedFile("Time", print->ToString(timer->Get()), storage_header, storage, false);
 	print->AddToPipeDelimitedFile("Battery Voltage", print->ToString(DriverStation::GetInstance().GetBatteryVoltage()), storage_header, storage, false);
 	
@@ -115,9 +130,15 @@ void Robot::TeleopPeriodic() {
 	TalonEncPrintOuts(talon_drive_right_enc, "Talon Right Drive Encoder");
 	TalonNoEncPrintOuts(talon_drive_left_noenc, "Talon Left Drive No Encoder");
 	TalonNoEncPrintOuts(talon_drive_right_noenc, "Talon Right Drive No Encoder");
-	
-	print->EndLoop(storage);
 
+	TalonEncPrintOuts(talon_shooter_connected, "Talon Shooter Connected");
+	TalonEncPrintOuts(talon_shooter_noconnected, "Talon Shooter Not Connected");
+
+	TalonNoEncPrintOuts(talon_intake, "Talon Intake");
+	TalonNoEncPrintOuts(talon_hopper, "Talon Hopper");
+
+	TalonEncPrintOuts(talon_winch, "Talon Winch");
+	TalonEncPrintOuts(talon_elevator, "Talon Elevator");
 }
 
 void Robot::TalonEncPrintOuts(TalonSRX *talon_enc, std::string talon_name){
@@ -126,8 +147,14 @@ void Robot::TalonEncPrintOuts(TalonSRX *talon_enc, std::string talon_name){
 	print->AddToPipeDelimitedFile(std::string(talon_name + " Amperage"), print->ToString(talon_enc->GetOutputCurrent()), storage_header, storage, false);
 }
 
-void Robot::TalonNoEncPrintOuts(TalonSRX *talon_enc, std::string talon_name){
+void Robot::TalonEncPrintOuts(TalonFX *talon_enc, std::string talon_name){
+	print->AddToPipeDelimitedFile(std::string(talon_name + " Position"), print->ToString(talon_enc->GetSelectedSensorPosition(0)), storage_header, storage, false);
+	print->AddToPipeDelimitedFile(std::string(talon_name + " Velocity"), print->ToString(talon_enc->GetSelectedSensorVelocity(0)), storage_header, storage, false);
 	print->AddToPipeDelimitedFile(std::string(talon_name + " Amperage"), print->ToString(talon_enc->GetOutputCurrent()), storage_header, storage, false);
+}
+
+void Robot::TalonNoEncPrintOuts(TalonSRX *talon_noenc, std::string talon_name){
+	print->AddToPipeDelimitedFile(std::string(talon_name + " Amperage"), print->ToString(talon_noenc->GetOutputCurrent()), storage_header, storage, false);
 }
 
 void Robot::TestPeriodic() {}

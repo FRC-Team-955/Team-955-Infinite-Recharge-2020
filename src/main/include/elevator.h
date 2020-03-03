@@ -8,16 +8,23 @@
 #include "networktables/NetworkTable.h"
 #include "networktables/NetworkTableInstance.h" 
 
-using namespace frc;
-
 class Elevator{
     public:
-        Elevator(TalonSRX *talon_drive_right_enc, frc::Joystick * joystick): talon_drive_right_enc(talon_drive_right_enc),joystick(joystick){};
-        void Elevate();
-    
+    Elevator(TalonSRX * talon_elevator_enc,
+        Joystick * joystick, int limit
+        ): 
+        talon_elevator_enc(talon_elevator_enc),
+        joystick(joystick),limit(limit){};
+    double left_drive;
+    double right_drive;
+    bool Align;
+    void Elevate();
+    int Position();
+    void ToPosition(int target_pos);
+    int limit;
     private:
-        TalonSRX *talon_drive_right_enc;
-        Joystick *joystick;
-        int yp;
+    Joystick *joystick;
+    TalonSRX * talon_elevator_enc;
+    
 };
 #endif

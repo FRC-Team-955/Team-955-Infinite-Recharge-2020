@@ -7,7 +7,6 @@
 
 #pragma once
 #include <iostream>
-#include "frc/WPILib.h"
 #include "ctre/Phoenix.h"
 #include <frc/Joystick.h>
 
@@ -18,16 +17,18 @@
 
 class Robot : public frc::TimedRobot {
  public:
-  void RobotInit() override;
-  void RobotPeriodic() override;
-  void AutonomousInit() override;
-  void AutonomousPeriodic() override;
-  void TeleopInit() override;
-  void TeleopPeriodic() override;
-  void TalonEncPrintOuts(TalonSRX *talon_enc, std::string talon_name);
-  void TalonNoEncPrintOuts(TalonSRX *talon_enc, std::string talon_name);
-  void TestPeriodic() override;
-  void DisabledInit() override;
+	void RobotInit() override;
+	void RobotPeriodic() override;
+	void AutonomousInit() override;
+	void AutonomousPeriodic() override;
+	void TeleopInit() override;
+	void TeleopPeriodic() override;
+	void TalonEncPrintOuts(TalonSRX *talon_enc, std::string talon_name);
+	void TalonEncPrintOuts(TalonFX *talon_enc, std::string talon_name);
+	void TalonNoEncPrintOuts(TalonSRX *talon_noenc, std::string talon_name);
+	void StandardDataCollection();
+	void TestPeriodic() override;
+	void DisabledInit() override;
 
  private:
 };

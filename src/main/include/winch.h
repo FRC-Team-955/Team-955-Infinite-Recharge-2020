@@ -1,7 +1,7 @@
 #ifndef WINCH
 #define WINCH
 
-#include "frc/WPILib.h"
+#include <frc/Joystick.h>
 #include <iostream>
 #include "ctre/Phoenix.h"
 

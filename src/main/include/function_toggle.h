@@ -2,7 +2,8 @@
 #define FUNCTIONTOGGLE
 
 #include <iostream>
-#include "frc/WPILib.h"
+#include <frc/Joystick.h>
+
 
 class FunctionToggle {
     public:

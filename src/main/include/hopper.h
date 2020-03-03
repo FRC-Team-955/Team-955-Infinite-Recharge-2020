@@ -1,7 +1,7 @@
 #ifndef HOPPER
 #define HOPPER
 #include <iostream>
-#include "frc/WPILib.h"
+#include <frc/Joystick.h>
 #include "ctre/Phoenix.h"
 #include <string>
 #include <cmath>

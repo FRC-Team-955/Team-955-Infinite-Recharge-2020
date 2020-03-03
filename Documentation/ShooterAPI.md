@@ -25,15 +25,25 @@ Shooter API Documentation
 
 <table>
   <tr>
-   <td>Shooter()
+   <td>Shooter(TalonFX * talon_shooter_connected, TalonFX * talon_shooter_noconnected,TalonSRX *talon_hopper, frc::Joystick * joystick1)
 <p>
-Constructs an instance of Class
+Constructs an instance of Shooter Class
+<p>
+Parameters:
+<p>
+talon_shooter_connected is the talon directly connected to the shooter
+<p>
+talon_shooter_noconnected is the talon connected by chain to the shooter
+<p>
+talon_hopper is the talon that controls the hopper
+<p>
+joystick1 is the instance of a Joystick
    </td>
   </tr>
   <tr>
    <td><strong>void Spin_Motor_Axis()</strong>
 <p>
-Spins the motor depending how much you presses the right trigger
+To be run in TeleopPeriodic
 <p>
 Parameters:
 <p>
@@ -45,13 +55,13 @@ None
 <p>
 Usage:
 <p>
-To be run in TeleopPeriodic to spin the motor with the control of an axis (Use Follower for the other motor)
+ to spin the motor with the control of an axis (Use Follower for the other motor and Don't use)
    </td>
   </tr>
   <tr>
    <td><strong>void Spin_Motor_PercentOutput()</strong>
 <p>
-Toggles the shooter
+To be run in TeleopPeriodic 
 <p>
 Parameters:
 <p>
@@ -63,13 +73,13 @@ None
 <p>
 Usage:
 <p>
-To be run in TeleopPeriodic to toggle the shooter with the press of a button (Don’t use)
+Toggles the shooter with the press of a button (Don’t use)
    </td>
   </tr>
   <tr>
-   <td><strong>Void Spin_Motor_Velocity()</strong>
+   <td><strong>bool Spin_Motor_Velocity()</strong>
 <p>
-Sets the Velocity to the target velocity and then spins the hopper
+Use in TeleopPeriodic
 <p>
 Parameters:
 <p>
@@ -77,11 +87,11 @@ target_velocity
 <p>
 Returns:
 <p>
-None
+If the shooter is spinning
 <p>
 Usage:
 <p>
-Spin the motors to a certain velocity and then spins the hopper
+Spin the motors to a certain velocity and then spins the hopper (Use Follower for the second motor)
    </td>
   </tr>
 </table>

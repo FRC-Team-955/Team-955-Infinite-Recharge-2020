@@ -2,13 +2,14 @@
 
 using namespace frc;
 
-void Shooter::SpinMotorVelocity(double target_velocity){
+bool Shooter::SpinMotorVelocity(double target_velocity){
     if (joystick1 -> GetRawAxis(3) > 0.1){
         //std::cout<<talon_shooter_connected -> GetSelectedSensorVelocity(0) <<std::endl;
         talon_shooter_connected -> Set(ControlMode::Velocity, target_velocity);
         double upperBound = target_velocity + target_velocity *0.05; 
         double lowerBound = target_velocity - target_velocity *0.05; 
-        int currentVelocity =talon_shooter_connected -> GetSelectedSensorVelocity(0) ;
+        int currentVelocity =talon_shooter_connected -> GetSelectedSensorVelocity(0);
+        return true;
         if (abs(currentVelocity) < abs(upperBound) && abs(currentVelocity) > abs(lowerBound)){
             std::cout<<"iawetafsdk"<<std::endl;
             talon_hopper -> Set(ControlMode::PercentOutput, -0.4);
@@ -16,6 +17,7 @@ void Shooter::SpinMotorVelocity(double target_velocity){
     } else {
         talon_shooter_connected -> Set(ControlMode::PercentOutput, 0);
          talon_hopper -> Set(ControlMode::PercentOutput, 0);
+         return false;
     }
 
 }

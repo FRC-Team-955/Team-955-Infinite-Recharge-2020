@@ -1,7 +1,9 @@
 #ifndef SHOOTER
 #define SHOOTER
 #include <string>
-#include <frc/WPILib.h>
+//#include <frc/WPILib.h>
+#include <frc/Joystick.h>
+
 #include <ctre/Phoenix.h>
 #include <iostream>
 #include <frc/TimedRobot.h>
@@ -13,7 +15,7 @@ using namespace frc;
 class Shooter{
     public:
     Shooter(TalonFX * talon_shooter_connected, TalonFX * talon_shooter_noconnected,TalonSRX *talon_hopper, frc::Joystick * joystick1):  talon_shooter_connected(talon_shooter_connected),talon_shooter_noconnected(talon_shooter_noconnected),talon_hopper(talon_hopper), joystick1(joystick1){};
-    void SpinMotorVelocity(  double target_velocity);
+    bool SpinMotorVelocity(double target_velocity);
     void SpinMotorPercentOutput();
     void SpinMotorAxis();
 
