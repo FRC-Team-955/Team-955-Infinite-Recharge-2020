@@ -6,39 +6,40 @@
 
 const int joy_0_idx = 0;
 
-const int align_button_idx = 6; //skip right bumper
-const int set_target_button_idx =5; //skip left bumper
+const int align_button_idx = 1 //skip right bumper
+const int set_target_button_idx = 2; //skip left bumper
 
-const int variable_speed_button_idx  =3;
+const int variable_speed_button_idx  = 10000;
 
 const int forward_back_drivebase_axis_idx = 1; //axis 1
-const int left_right_drivebase_axis_idx = 4; //axis 4
-const int sensitivity_scale_cont_button_idx = 4; 
+const int left_right_drivebase_axis_idx = 4; //axis 4 
 const int test = 4000; //no
+
+const int deploy_intake_button_idx = 1;  
+const int run_intake_button_idx = 3; 
+
 
     //Joystick 1
 
 const int joy_1_idx = 1;
 
 const int color_wheel_oper_1_button_idx = 1000;
-const int color_wheel_oper_2_button_idx = 200;
+const int color_wheel_oper_2_button_idx = 2002;
 
-const int raise_color_wheel_arm_button_idx = 300;
-const int lower_color_wheel_arm_button_idx = 400;
+const int raise_color_wheel_arm_button_idx = 3002;
+const int lower_color_wheel_arm_button_idx = 4002;
 
 const int toggle_rev_shooter_button_idx = 3;   
-const int hopper_button_idx = 3; 
+const int hopper_button_idx = 30000; 
 
-const int elevator_up_axis_idx = 1100; 
-const int elevator_down_axis_idx = 1200; 
-const int elevator_up_button_idx = 3; 
-const int elevator_down_button_idx = 4; 
+const int elevator_up_axis_idx = 1; 
+const int elevator_down_axis_idx = 1; 
+const int elevator_up_button_idx = 3000; 
+const int elevator_down_button_idx = 40000; 
 
-const int pull_winch_in_button_idx = 2; 
+const int pull_winch_in_button_idx = 5; 
 const int pull_winch_in_axis_idx = 2100; 
 
-const int deploy_intake_button_idx = 1;  
-const int run_intake_button_idx = 2; 
 
 //itake is either one axis or two buttons
 // joy 1 deploy intake 1 wheels intake 2 hopper 3 shooter axis 3

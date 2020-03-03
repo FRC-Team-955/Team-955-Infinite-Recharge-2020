@@ -5,3 +5,6 @@ double Distance::GetCurrentDistance(const double height_of_field_element_minus_h
     double distance = height_of_field_element_minus_height_of_camera / tan (mounting_angle_of_camera_in_radians + vertical_angle_offset_in_radians);
     return distance;
 }
+int Distance::DistanceToVelocity(double distance){
+   return -0.056 * distance * distance + 7.33568 * distance - 15659.202;
+}

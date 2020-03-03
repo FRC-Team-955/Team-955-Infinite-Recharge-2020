@@ -37,11 +37,11 @@ Timer *timer;
 Intake *intake;
 DriveBase *drivebase;
 Hopper *hopper;
-//Elevate *elevator;
+Elevator *elevator;
 Winch *winch;
 Shooter *shooter;
 
-Pid *pid;
+PID *pid;
 
 double multi = 1;
 
@@ -64,7 +64,7 @@ void Robot::RobotInit() {
 	talon_drive_left_noenc->Set(ControlMode::Follower, num_talon_drive_left_enc);
 	talon_drive_right_noenc->Set(ControlMode::Follower, num_talon_drive_right_enc);
 	talon_drive_left_enc->SetSensorPhase(1);
-	pid = new Pid();
+	pid = new PID();
 
 	pid->PIDTune(talon_drive_left_enc, 4.2, 0.01, 0, 2.27);
 	pid->PIDTune(talon_drive_right_enc, 4.2, 0.01, 0, 2.34);
@@ -89,7 +89,7 @@ void Robot::RobotInit() {
 	drivebase = new DriveBase(joystick0, talon_drive_left_enc, talon_drive_right_enc);
 	intake = new Intake(talon_intake, solenoid_intake_right_6, solenoid_intake_right_7, solenoid_intake_left_0, solenoid_intake_left_1, joystick1);
 	hopper = new Hopper(toggle1, talon_hopper);
-	//elevator = new Elevate(talon_elevator, joystick1);
+	elevator = new Elevator(talon_elevator, joystick1, -10000);
 	winch = new Winch(talon_winch, joystick1);
 	shooter = new Shooter(talon_shooter_connected, talon_shooter_noconnected,talon_hopper, joystick1);
 
@@ -113,7 +113,7 @@ void Robot::TeleopPeriodic() {
 	intake->DeployIntakePNE();
 	intake->RunIntake(-0.5);
 	hopper->Toggle();
-	//elevator->Elevate();
+	elevator->Elevate();
 	winch->RaiseWinchAxis();
 	shooter->SpinMotorAxis();
 
