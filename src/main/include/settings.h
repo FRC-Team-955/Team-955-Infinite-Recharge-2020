@@ -6,7 +6,7 @@
 
 const int joy_0_idx = 0;
 
-const int align_button_idx = 1 //skip right bumper
+const int align_button_idx = 1; //skip right bumper
 const int set_target_button_idx = 2; //skip left bumper
 
 const int variable_speed_button_idx  = 10000;
