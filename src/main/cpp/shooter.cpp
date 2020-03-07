@@ -7,11 +7,12 @@ bool Shooter::SpinMotorVelocity(double target_velocity){
         talon_shooter_connected -> Set(ControlMode::Velocity, target_velocity);
         double upperBound = target_velocity + target_velocity *0.08; 
         double lowerBound = target_velocity - target_velocity *0.08; 
-        int currentVelocity =talon_shooter_connected -> GetSelectedSensorVelocity(0);
-        return true;
+        int currentVelocity = talon_shooter_connected -> GetSelectedSensorVelocity(0);
         if (abs(currentVelocity) < abs(upperBound) && abs(currentVelocity) > abs(lowerBound)){
             talon_hopper -> Set(ControlMode::PercentOutput, -0.4);
+            std::cout<<"Testing"<<std::endl;
         }
+        return true;
     } else {
         talon_shooter_connected -> Set(ControlMode::PercentOutput, 0);
          talon_hopper -> Set(ControlMode::PercentOutput, 0);

@@ -16,7 +16,7 @@ const int left_right_drivebase_axis_idx = 4; //axis 4
 const int test = 4000; //no
 
 const int deploy_intake_button_idx = 1;  
-const int run_intake_button_idx = 3; 
+const int run_intake_button_idx = 2; 
 
 
     //Joystick 1

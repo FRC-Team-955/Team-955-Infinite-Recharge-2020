@@ -2,6 +2,7 @@
 #define AUTO
 
 #include <iostream>
+#include "frc/WPILib.h"
 #include "ctre/Phoenix.h"
 #include <frc/Joystick.h>
 
@@ -9,6 +10,7 @@
 
 #include <frc/TimedRobot.h>
 #include <frc/smartdashboard/SendableChooser.h>
+#include "distance.h"
 
 #include <AHRS.h>
 
@@ -19,20 +21,26 @@ class Auto {
 			TalonSRX *intake_talon,
 			AHRS *navx,
 			TalonFX *shooter_talon,
-			TalonSRX *hopper_talon) : 
+			TalonSRX *hopper_talon,
+			Distance *distance,
+			std::shared_ptr<nt::NetworkTable> table) : 
 			drive_talon_right(drive_talon_right), 
 			drive_talon_left(drive_talon_left), 
 			intake_talon(intake_talon),
 			navx(navx),
 			shooter_talon(shooter_talon),
-			hopper_talon(hopper_talon) {};
+			hopper_talon(hopper_talon),
+			distance(distance),
+			table(table) {};
 
 		int CalculateEncoderCounts(int length_inches);
-		void MoveStraight(int distance_inches, int max_right_velocity, int max_left_velocity, int &mode);
+		void MoveStraight(int distance_inches, int max_right_velocity, int max_left_velocity, int &mode, bool ramp);
 		void Turn(int degrees, int &mode);
 		void InitializeNavX(int &mode);
 		int RampSpeed(int velocity, int difference);
 		int StraightRamp(int velocity, int percent_change);
+		int StraightRampless(int velocity, int percent_change);
+		int RampTurn(int velocity, int difference, int percent_change);
 		void Stop();
 		void ZeroEnc(int &mode);
 		void Pause(int &mode);
@@ -41,9 +49,11 @@ class Auto {
 		void MoveOffLine();
 		void IntakeOn();
 		void IntakeOff();
-		void Shoot();
+		void Shoot(int &mode);
 		void PickUpBalls(int distance_inches, int &mode);
-		void Move(int distance_inches, int &mode);
+		void Move(int distance_inches, int &mode, bool ramp);
+		void LimelightGetDistance(int &mode);
+		void MovementCalculations();
 
 		int target_distance_change = 0;
 		int percent_change = 0;
@@ -55,6 +65,13 @@ class Auto {
 		float current_degrees;
 		float intake_talon_speed = -0.9;
 
+		float first_turn;
+		float second_turn;
+		float first_move;
+		int distance_to_goal = 127;
+		float offset;
+
+
 	private:
 		TalonSRX *drive_talon_right;
 		TalonSRX *drive_talon_left;
@@ -62,12 +79,14 @@ class Auto {
 		AHRS *navx;
 		TalonFX *shooter_talon;
 		TalonSRX *hopper_talon;
+		Distance *distance;
+		std::shared_ptr<nt::NetworkTable> table;
 
 		bool know_gear_ratio = true;
 		int gear_ratio = 6;
 		int full_rotation_enc = 707;
 		const int wheel_diameter = 7.5;
-		const int max_turning_velocity = 150;
+		const int max_turning_velocity = 113;
 		const int max_balls_velocity = 230;
 		const int no_pickup_max_velocity = 350;
 		const int right_forward_direction = -1; // 1 or -1
@@ -78,6 +97,11 @@ class Auto {
 		int max_balls_left_velocity = left_forward_direction * max_balls_velocity;
 		int no_pickup_max_left_velocity = left_forward_direction * no_pickup_max_velocity;
 		int no_pickup_max_right_velocity = right_forward_direction * no_pickup_max_velocity;
+
+		
+		
+
+		int rloop = 0;
 
 
 		int loop = 1;

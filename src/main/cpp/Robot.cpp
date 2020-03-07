@@ -24,6 +24,7 @@
 #include "shooter.h"
 #include "pid.h"
 #include "compresser.h"
+#include "distance.h"
 
 using namespace frc;
 
@@ -44,6 +45,7 @@ Elevator *elevator;
 Winch *winch;
 Shooter *shooter;
 CompresserClass *compressor;
+Distance *distance;
 
 PID *pid;
 
@@ -53,11 +55,11 @@ std::string storage = "";
 std::string storage_header = "";
 std::string filename = "UnifiedCode";
 
-
+std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
 void Robot::RobotInit() {
 	talon_drive_left_noenc = new TalonSRX(num_talon_drive_left_noenc);
-	talon_drive_left_enc = new TalonSRX(num_talon_drive_left_enc);
-	talon_drive_right_enc = new TalonSRX(num_talon_drive_right_enc);
+	talon_drive_left_enc = new TalonSRX(num_talon_drive_left_enc); //1
+	talon_drive_right_enc = new TalonSRX(num_talon_drive_right_enc); //4
 	talon_drive_right_noenc = new TalonSRX(num_talon_drive_right_noenc);
 	talon_intake = new TalonSRX(num_talon_intake);
 	talon_winch = new TalonSRX(num_talon_winch);
@@ -65,8 +67,8 @@ void Robot::RobotInit() {
 	talon_hopper = new TalonSRX(num_talon_hopper);
 
 	talon_drive_left_noenc->SetInverted(1);
-	talon_drive_left_noenc->Set(ControlMode::Follower, num_talon_drive_left_enc);
-	talon_drive_right_noenc->Set(ControlMode::Follower, num_talon_drive_right_enc);
+	//talon_drive_left_noenc->Set(ControlMode::Follower, num_talon_drive_left_enc);
+	//talon_drive_right_noenc->Set(ControlMode::Follower, num_talon_drive_right_enc);
 	talon_drive_left_enc->SetSensorPhase(1);
 	pid = new PID();
 
@@ -99,6 +101,7 @@ void Robot::RobotInit() {
 	winch = new Winch(talon_winch, joystick1);
 	shooter = new Shooter(talon_shooter_connected, talon_shooter_noconnected,talon_hopper, joystick1);
 	compressor = new CompresserClass(compressor_wpi);
+	distance = new Distance();
 
 	pid->PIDTune(talon_elevator, 1, 0, 0, 0);
 	pid->PIDTune(talon_shooter_connected, 0.28, 0, 0, 0.05);
@@ -117,13 +120,15 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-	drivebase->Drive(multi);
+	/*drivebase->Drive(multi);
 	intake->DeployIntakePNE();
-	intake->RunIntake(-0.5);
-	elevator->Elevate();
-	winch->RaiseWinchAxis();
-	if (shooter->SpinMotorVelocity(-16500)) compressor->CompresserOff();
-	else compressor->CompresserBatteryVoltage(8);
+	if(talon_intake->GetOutputCurrent() < 50) intake->RunIntake(-0.5);
+	//elevator->Elevate();
+	//winch->RaiseWinchAxis();
+	if (shooter->SpinMotorVelocity(distance->DistanceToVelocity(distance->GetCurrentDistance(71.25, table->GetNumber("ty", 0.0))))) compressor->CompresserOff();
+	else compressor->CompresserBatteryVoltage(8);*/
+	talon_drive_left_enc->Set(ControlMode::PercentOutput, 0.5);
+	talon_drive_right_enc->Set(ControlMode::PercentOutput, 0.5);
 
 	StandardDataCollection();
 	
