@@ -7,7 +7,7 @@
 #include <cmath>
 #include "winch.h"
 #include "elevator.h"
-#include "Lidar.h"
+#include "lidar.h"
 //#include "auto.h"
 
 class EndGame {

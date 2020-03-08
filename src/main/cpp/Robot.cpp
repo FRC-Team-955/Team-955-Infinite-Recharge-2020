@@ -25,6 +25,8 @@
 #include "pid.h"
 #include "compresser.h"
 #include "distance.h"
+#include "limelight.h"
+#include "function_toggle.h"
 
 using namespace frc;
 
@@ -46,6 +48,8 @@ Winch *winch;
 Shooter *shooter;
 CompresserClass *compressor;
 Distance *distance;
+Limelight *limelight;
+FunctionToggle *autoalign;
 
 PID *pid;
 
@@ -67,8 +71,8 @@ void Robot::RobotInit() {
 	talon_hopper = new TalonSRX(num_talon_hopper);
 
 	talon_drive_left_noenc->SetInverted(1);
-	//talon_drive_left_noenc->Set(ControlMode::Follower, num_talon_drive_left_enc);
-	//talon_drive_right_noenc->Set(ControlMode::Follower, num_talon_drive_right_enc);
+	talon_drive_left_noenc->Set(ControlMode::Follower, num_talon_drive_left_enc);
+	talon_drive_right_noenc->Set(ControlMode::Follower, num_talon_drive_right_enc);
 	talon_drive_left_enc->SetSensorPhase(1);
 	pid = new PID();
 
@@ -102,6 +106,8 @@ void Robot::RobotInit() {
 	shooter = new Shooter(talon_shooter_connected, talon_shooter_noconnected,talon_hopper, joystick1);
 	compressor = new CompresserClass(compressor_wpi);
 	distance = new Distance();
+	limelight = new Limelight(joystick0, joystick1, talon_drive_left_enc, talon_drive_left_noenc, talon_drive_right_enc, talon_drive_right_noenc);
+	autoalign = new FunctionToggle(joystick0, limelight, drivebase);
 
 	pid->PIDTune(talon_elevator, 1, 0, 0, 0);
 	pid->PIDTune(talon_shooter_connected, 0.28, 0, 0, 0.05);
@@ -120,15 +126,21 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-	/*drivebase->Drive(multi);
+	//drivebase->Drive(multi);
+	autoalign->ToggleFunction(table->GetNumber("tx", 0.0));
 	intake->DeployIntakePNE();
 	if(talon_intake->GetOutputCurrent() < 50) intake->RunIntake(-0.5);
+	else {
+		std::cout<<"Help!!!! The Intake is Stalling!!!"<<std::endl;
+		talon_intake->Set(ControlMode::PercentOutput, 0.3);
+	}
 	//elevator->Elevate();
 	//winch->RaiseWinchAxis();
 	if (shooter->SpinMotorVelocity(distance->DistanceToVelocity(distance->GetCurrentDistance(71.25, table->GetNumber("ty", 0.0))))) compressor->CompresserOff();
-	else compressor->CompresserBatteryVoltage(8);*/
-	talon_drive_left_enc->Set(ControlMode::PercentOutput, 0.5);
-	talon_drive_right_enc->Set(ControlMode::PercentOutput, 0.5);
+	else {
+		compressor->CompresserBatteryVoltage(13);
+		talon_hopper->Set(ControlMode::PercentOutput, 0.5 * joystick0->GetRawAxis(hopper_reverse_trigger_idx));
+	}
 
 	StandardDataCollection();
 	
@@ -162,12 +174,12 @@ void Robot::TalonEncPrintOuts(TalonSRX *talon_enc, std::string talon_name){
 
 void Robot::TalonEncPrintOuts(TalonFX *talon_enc, std::string talon_name){
 	print->AddToPipeDelimitedFile(std::string(talon_name + " Position"), print->ToString(talon_enc->GetSelectedSensorPosition(0)), storage_header, storage, false);
-	print->AddToPipeDelimitedFile(std::string(talon_name + " Velocity"), print->ToString(talon_enc->GetSelectedSensorVelocity(0)), storage_header, storage, true);
+	print->AddToPipeDelimitedFile(std::string(talon_name + " Velocity"), print->ToString(talon_enc->GetSelectedSensorVelocity(0)), storage_header, storage, false);
 	print->AddToPipeDelimitedFile(std::string(talon_name + " Amperage"), print->ToString(talon_enc->GetOutputCurrent()), storage_header, storage, false);
 }
 
 void Robot::TalonNoEncPrintOuts(TalonSRX *talon_noenc, std::string talon_name){
-	print->AddToPipeDelimitedFile(std::string(talon_name + " Amperage"), print->ToString(talon_noenc->GetOutputCurrent()), storage_header, storage, false);
+	print->AddToPipeDelimitedFile(std::string(talon_name + " Amperage"), print->ToString(talon_noenc->GetOutputCurrent()), storage_header, storage, talon_name == "Talon Intake");
 }
 
 void Robot::TestPeriodic() {}

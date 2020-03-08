@@ -4,18 +4,20 @@
 #include "Robot.h"
 #include "ctre/Phoenix.h"
 #include <iostream>
-#include "frc/WPILib.h"
+#include "frc/Joystick.h"
 
 class Limelight {
     public:
 	Limelight(
 		frc::Joystick *joystick0,
+		frc::Joystick *joystick1,
 		TalonSRX *talon_drive_left_enc,
 		TalonSRX *talon_drive_left_noenc,
 		TalonSRX *talon_drive_right_enc,
 		TalonSRX *talon_drive_right_noenc
 	):
 		joystick0(joystick0),
+		joystick1(joystick1),
 		talon_drive_left_enc(talon_drive_left_enc),
 		talon_drive_left_noenc(talon_drive_left_noenc),
 		talon_drive_right_enc(talon_drive_right_enc),
@@ -26,9 +28,12 @@ class Limelight {
 	
     private:
     frc::Joystick *joystick0;
+    frc::Joystick *joystick1;
 	TalonSRX *talon_drive_left_enc;
 	TalonSRX *talon_drive_left_noenc;
 	TalonSRX *talon_drive_right_enc;
-	TalonSRX *talon_drive_right_noenc;	
+	TalonSRX *talon_drive_right_noenc;
+
+	int rumble_set = 0;
 };
 #endif

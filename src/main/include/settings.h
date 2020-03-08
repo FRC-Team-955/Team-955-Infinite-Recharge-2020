@@ -15,9 +15,10 @@ const int forward_back_drivebase_axis_idx = 1; //axis 1
 const int left_right_drivebase_axis_idx = 4; //axis 4 
 const int test = 4000; //no
 
-const int deploy_intake_button_idx = 1;  
-const int run_intake_button_idx = 2; 
+const int deploy_intake_button_idx = 5;  
+const int run_intake_button_idx = 6; 
 
+const int hopper_reverse_trigger_idx = 2;
 
     //Joystick 1
 
