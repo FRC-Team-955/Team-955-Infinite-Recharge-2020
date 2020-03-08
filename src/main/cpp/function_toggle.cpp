@@ -1,19 +1,20 @@
 #include "function_toggle.h"
+#include "settings.h"
 using namespace frc;
 
-void FunctionToggle::ToggleFunction(){
-    if (is_pressed && joystick->GetRawButton(3)) {  
+void FunctionToggle::ToggleFunction(double horizontal_offset){
+    if (is_pressed && joystick->GetRawButton(align_button_idx)) {  
         is_pressed = false;
     if (toggle) {  
         toggle = false;
     } else {
         toggle = true;
     }
-    }else if(!joystick->GetRawButton(3) && !toggle) { 
+    }else if(!joystick->GetRawButton(align_button_idx) && !toggle) { 
         is_pressed = true; 
-        // default function code
-    }else if(!joystick->GetRawButton(3) && toggle){
+        drivebase->Drive(1);
+    }else if(!joystick->GetRawButton(align_button_idx) && toggle){
         is_pressed = true; 
-        // toggle function code
+        limelight->RunAlign(horizontal_offset);
     }
 }
