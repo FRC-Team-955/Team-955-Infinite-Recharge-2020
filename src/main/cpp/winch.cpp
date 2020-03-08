@@ -1,15 +1,18 @@
 #include "winch.h"
-#include "settings.h"
+//#include "settings.h"
 using namespace frc;
 
 void Winch::RaiseWinchAxis(){
-	talon_winch_enc -> Set(ControlMode::PercentOutput, joystick -> GetRawAxis(pull_winch_in_axis_idx));
+	double axis = (double)joystick->GetRawAxis(1);
+	float speed = axis; //fabs(axis)*0.75;
+	std::cout<<speed<<std::endl;
+	talon_winch_enc -> Set(ControlMode::PercentOutput, speed);
 }
 
 void Winch::RaiseWinchButton(int tics){
-	if(joystick -> GetRawButtonPressed(pull_winch_in_button_idx)){
+	//if(joystick -> GetRawButtonPressed(1)){
 		talon_winch_enc -> Set(ControlMode::Position, tics);
-	}
+	//}
 }
 
 void Winch::LowerWinch(){
