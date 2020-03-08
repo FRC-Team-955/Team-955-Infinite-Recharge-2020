@@ -3,7 +3,7 @@
 using namespace frc;
 
 void EndGame::Climb(){
-	if (is_pressed && joystick->GetRawButton(2)) {  
+if (is_pressed && joystick->GetRawButton(2)) {  
         is_pressed = false;
     if (toggle) {  
         toggle = false;
