@@ -7,10 +7,11 @@ void Limelight::RunAlign(double  horizontal_offset) {
   
   if (horizontal_offset < 3 and  horizontal_offset > -3) {
     align = true;
-    
+    talon_drive_left_enc ->Set(ControlMode::PercentOutput, 0);
+    talon_drive_right_enc ->Set(ControlMode::PercentOutput, 0);
   } 
   else if ((horizontal_offset > 3 or horizontal_offset < -3) and align == true ){
-    align =false;
+    align =-false;
   }
   else if (horizontal_offset > 0.15 and align == false) {
       talon_drive_left_enc ->Set(ControlMode::PercentOutput, -1* horizontal_offset/ 20);
