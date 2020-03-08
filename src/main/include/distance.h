@@ -4,7 +4,6 @@
 #include "Robot.h"
 #include "ctre/Phoenix.h"
 #include <iostream>
-#include "frc/WPILib.h"
 
 class Distance {
     public:

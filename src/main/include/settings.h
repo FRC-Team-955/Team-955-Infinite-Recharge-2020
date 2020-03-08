@@ -6,7 +6,7 @@
 
 const int joy_0_idx = 0;
 
-const int align_button_idx = 1 //skip right bumper
+const int align_button_idx = 1; //skip right bumper
 const int set_target_button_idx = 2; //skip left bumper
 
 const int variable_speed_button_idx  = 10000;
@@ -16,7 +16,7 @@ const int left_right_drivebase_axis_idx = 4; //axis 4
 const int test = 4000; //no
 
 const int deploy_intake_button_idx = 1;  
-const int run_intake_button_idx = 3; 
+const int run_intake_button_idx = 2; 
 
 
     //Joystick 1
