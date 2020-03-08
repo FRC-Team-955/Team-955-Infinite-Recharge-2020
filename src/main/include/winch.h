@@ -1,14 +1,15 @@
 #ifndef WINCH
 #define WINCH
 
-#include <frc/Joystick.h>
+#include "frc/WPILib.h"
 #include <iostream>
 #include "ctre/Phoenix.h"
-
+#include <cmath>
 class Winch {
 	public:
 		Winch (TalonSRX *talon_winch_enc, frc::Joystick *joystick) :  talon_winch_enc(talon_winch_enc), joystick(joystick) {};
 		void RaiseWinchAxis();
+
 		void RaiseWinchButton(int tics);
 		void LowerWinch();
 	private:
