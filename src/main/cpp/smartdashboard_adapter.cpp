@@ -37,3 +37,12 @@ std::string SmartDashboardAdapter::ChooseAuto(){
 
     return "";
 }
+
+std::string SmartDashboardAdapter::RunCompressor(){
+    compressor_input = SmartDashboard::GetString("DB/String 1", "no_data");
+
+    if(compressor_input == "C" || compressor_input =="c"){ //Five Ball Pickup = F/f ; Three Ball Pickup = T/t ; Complete Auto from Anywhere = C/c ; Simple Backup = S/s
+        return "RunCompressor";
+    }
+    return "";
+}

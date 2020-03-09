@@ -27,6 +27,7 @@
 #include "distance.h"
 #include "limelight.h"
 #include "function_toggle.h"
+#include "smartdashboard_adapter.h"
 
 using namespace frc;
 
@@ -51,6 +52,8 @@ Distance *distance;
 Limelight *limelight;
 FunctionToggle *autoalign;
 
+SmartDashboardAdapter *chooser;
+
 PID *pid;
 
 double multi = 1;
@@ -58,6 +61,8 @@ double multi = 1;
 std::string storage = "";
 std::string storage_header = "";
 std::string filename = "UnifiedCode";
+
+std::string compressor_input;
 
 std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
 void Robot::RobotInit() {
@@ -107,7 +112,9 @@ void Robot::RobotInit() {
 	compressor = new CompresserClass(compressor_wpi);
 	distance = new Distance();
 	limelight = new Limelight(joystick0, joystick1, talon_drive_left_enc, talon_drive_left_noenc, talon_drive_right_enc, talon_drive_right_noenc);
-	autoalign = new FunctionToggle(joystick0, limelight, drivebase);
+	autoalign = new FunctionToggle(joystick0, joystick1, limelight, drivebase);
+
+	chooser = new SmartDashboardAdapter();
 
 	pid->PIDTune(talon_elevator, 1, 0, 0, 0);
 	pid->PIDTune(talon_shooter_connected, 0.28, 0, 0, 0.05);
@@ -123,25 +130,30 @@ void Robot::AutonomousPeriodic() {}
 
 void Robot::TeleopInit() {
 	timer->Start();
+	compressor_input = chooser->RunCompressor();
 }
 
 void Robot::TeleopPeriodic() {
-	//drivebase->Drive(multi);
-	autoalign->ToggleFunction(table->GetNumber("tx", 0.0));
-	intake->DeployIntakePNE();
-	if(talon_intake->GetOutputCurrent() < 50) intake->RunIntake(-0.5);
-	else {
-		std::cout<<"Help!!!! The Intake is Stalling!!!"<<std::endl;
-		talon_intake->Set(ControlMode::PercentOutput, 0.3);
+	if (compressor_input == "RunCompressor"){
+		compressor->CompresserOn();
 	}
+	//drivebase->Drive(multi);
+	else{
+		autoalign->ToggleFunction(table->GetNumber("tx", 0.0));
+		intake->DeployIntakePNE();
+		if(talon_intake->GetOutputCurrent() < 50) intake->RunIntake(-0.5);
+		else {
+			std::cout<<"Help!!!! The Intake is Stalling!!!"<<std::endl;
+			talon_intake->Set(ControlMode::PercentOutput, 0.3);
+		}
 	//elevator->Elevate();
 	//winch->RaiseWinchAxis();
-	if (shooter->SpinMotorVelocity(distance->DistanceToVelocity(distance->GetCurrentDistance(71.25, table->GetNumber("ty", 0.0))))) compressor->CompresserOff();
-	else {
-		compressor->CompresserBatteryVoltage(13);
-		talon_hopper->Set(ControlMode::PercentOutput, 0.5 * joystick0->GetRawAxis(hopper_reverse_trigger_idx));
+		if (shooter->SpinMotorVelocity(distance->DistanceToVelocity(distance->GetCurrentDistance(71.25, table->GetNumber("ty", 0.0))))) compressor->CompresserOff();
+		else {
+			compressor->CompresserBatteryVoltage(11);
+			talon_hopper->Set(ControlMode::PercentOutput, 0.5 * joystick0->GetRawAxis(hopper_reverse_trigger_idx));
+		}
 	}
-
 	StandardDataCollection();
 	
 	print->EndLoop(storage);
