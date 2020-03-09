@@ -45,7 +45,6 @@ void Auto::PickUpBalls(int distance_inches, int &mode){
 
 void Auto::Move(int distance_inches, int &mode, bool ramp){
 	MoveStraight(distance_inches, no_pickup_max_right_velocity, no_pickup_max_left_velocity, mode, ramp);
-	IntakeOff();
 }
 
 void Auto::Turn(int degrees, int &mode){
@@ -80,10 +79,10 @@ int Auto::RampSpeed(int velocity, int difference){
 }
 
 int Auto::RampTurn(int velocity, int difference, int percent_change){
-	if (difference > 30 || percent_change >= 90) return velocity;
+	if (difference > 30 || percent_change >= 90) return velocity * 0.75;
 	if (difference > 20 || percent_change >= 70) return velocity / 2;
 	if (difference > 10 || percent_change >= 40) return velocity / 3;
-	if (difference > 6) return velocity / 4;
+	if (difference > 3) return velocity / 4;
 	return 0;
 }
 
@@ -151,11 +150,13 @@ void Auto::IntakeOff(){
 void Auto::Shoot(int &mode){
 	rloop++;
 	Stop();
-	shooter_talon->Set(ControlMode::PercentOutput, -0.8);
-	if (abs(shooter_talon->GetSelectedSensorVelocity(0)) > 16000){
+	int velocity = distance->DistanceToVelocity(distance_to_goal) - 1000;
+	shooter_talon->Set(ControlMode::Velocity, velocity);
+	hopper_talon->Set(ControlMode::PercentOutput, 0);
+	if (abs(shooter_talon->GetSelectedSensorVelocity(0)) > abs(velocity * .9)){
 		hopper_talon->Set(ControlMode::PercentOutput, -0.4);
 	}
-	if (rloop == 180) {
+	if (rloop == 160) {
 		shooter_talon->Set(ControlMode::PercentOutput, 0);
 		hopper_talon->Set(ControlMode::PercentOutput, 0);
 		mode++;
@@ -163,20 +164,23 @@ void Auto::Shoot(int &mode){
 }
 
 void Auto::LimelightGetDistance(int &mode){
+	Stop();
 	distance_to_goal = distance->GetCurrentDistance(71.25, table->GetNumber("ty", 0.0)) / cos(distance->DegreesToRadians(table->GetNumber("tx", 0.0)));
-	if (distance_to_goal < 200 && distance_to_goal > 120) mode++;
+	if (distance_to_goal > 120) mode++;
 }
 
 void Auto::MovementCalculations(){
+	//float shooter_offset = 4.75;
+	float shooter_offset = 0;
 	float tx = table->GetNumber("tx", 0.0);
 	int direction = tx / abs(tx);
-	first_turn = direction * distance->RadiansToDegrees(acos(120.0 / distance_to_goal));
+	first_turn = direction * distance->RadiansToDegrees(acos(120.0 / distance_to_goal)) + shooter_offset;
 	if (first_turn < 0) first_turn+= 360;
 	float dis_dividind = pow(distance_to_goal, 2) - pow(120.0, 2);
 	float dispacement = sqrt(dis_dividind);
 	offset = 66.91 + direction * dispacement;
 	second_turn = distance->RadiansToDegrees(atan(86.57 / abs(offset))) + 90;
-	float dividind = pow(offset, 2) + pow(75.57, 2);
+	float dividind = pow(offset, 2) + pow(50.57, 2);
 	first_move = sqrt(dividind);
 }
 
@@ -210,23 +214,25 @@ void Auto::ThreeBallPickup(){
 	}
 	if (mode == 3) Turn(first_turn, mode);
 	if (mode == 4) Shoot(mode);
-	if (mode == 5) {
-		Turn(second_turn - abs(360 - first_turn), mode);
-	}
+	if (mode == 5) Turn(second_turn, mode);
 	if (mode == 6) ZeroEnc(mode);
 	if (mode == 7) Move(first_move, mode, true);
 	if (mode == 8) ZeroEnc(mode);
 	if (mode == 9) Turn(180, mode);
 	if (mode == 10) ZeroEnc(mode);
-	if (mode == 11) PickUpBalls(120, mode);
+	if (mode == 11) PickUpBalls(140, mode);
 	if (mode == 12) ZeroEnc(mode);
 	if (mode == 13) {
-		Move(-80, mode, false);
-		shooter_talon->Set(ControlMode::PercentOutput, -0.8);
+		IntakeOn();
+		hopper_talon->Set(ControlMode::PercentOutput, 0.2);
+		Move(-100, mode, true);
 	}
-	if (mode == 14) InitializeNavX(mode);
-	if (mode == 15) Turn(175, mode);
-	if (mode == 16) ZeroEnc(mode);
+	if (mode == 14) {
+		hopper_talon->Set(ControlMode::PercentOutput, 0.2);
+		Turn(335, mode);
+	}
+	if (mode == 15) ZeroEnc(mode);
+	if (mode == 16) LimelightGetDistance(mode);
 	if (mode == 17) Shoot(mode);
 	if (mode == 18) Stop();
 	std::cout<<"Mode: "<<mode<<std::endl;
@@ -261,5 +267,11 @@ void Auto::FiveBallPickup(){
 void Auto::MoveOffLine(){
 	if (mode == 1) ZeroEnc(mode);
 	if (mode == 2) MoveStraight(-36, max_balls_right_velocity, max_balls_left_velocity, mode, true);
+	if (mode == 3) Stop();
+}
+
+void Auto::TestAuto(){
+	if (mode == 1) InitializeNavX(mode);
+	if (mode == 2) Turn(90, mode);
 	if (mode == 3) Stop();
 }

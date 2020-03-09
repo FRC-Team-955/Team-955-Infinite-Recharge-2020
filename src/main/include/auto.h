@@ -54,6 +54,7 @@ class Auto {
 		void Move(int distance_inches, int &mode, bool ramp);
 		void LimelightGetDistance(int &mode);
 		void MovementCalculations();
+		void TestAuto();
 
 		int target_distance_change = 0;
 		int percent_change = 0;
@@ -86,20 +87,22 @@ class Auto {
 		int gear_ratio = 6;
 		int full_rotation_enc = 707;
 		const int wheel_diameter = 7.5;
-		const int max_turning_velocity = 113;
-		const int max_balls_velocity = 230;
-		const int no_pickup_max_velocity = 350;
+		const int max_first_turn_velocity = 135;
+		const int max_turning_velocity = 120;
+		const int max_balls_velocity = 380;
+		const int no_pickup_max_velocity = 385;
 		const int right_forward_direction = -1; // 1 or -1
 		const int left_forward_direction = -1; // 1 or -1
 		int max_right_turning_velocity = right_forward_direction * max_turning_velocity;
 		int max_left_turning_velocity = left_forward_direction * max_turning_velocity;
+		
+		int max_right_first_turn_velocity = right_forward_direction * max_first_turn_velocity;
+		int max_left_first_turn_velocity = left_forward_direction * max_first_turn_velocity;
+
 		int max_balls_right_velocity = right_forward_direction * max_balls_velocity;
 		int max_balls_left_velocity = left_forward_direction * max_balls_velocity;
 		int no_pickup_max_left_velocity = left_forward_direction * no_pickup_max_velocity;
 		int no_pickup_max_right_velocity = right_forward_direction * no_pickup_max_velocity;
-
-		
-		
 
 		int rloop = 0;
 
