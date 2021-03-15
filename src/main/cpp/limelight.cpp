@@ -20,7 +20,7 @@ void Limelight::RunAlign(double  horizontal_offset) {
     rumble_set++;
   } 
   else if ((horizontal_offset > 3 or horizontal_offset < -1.5) and align == true ){
-    align =-false;
+    align = false;
   }
   else if (horizontal_offset > 0.15 and align == false) {
     rumble_set = 0;
